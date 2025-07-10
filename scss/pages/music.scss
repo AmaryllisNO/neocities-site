@@ -1,0 +1,67 @@
+.music {
+  &__wrapper {
+    display: flex;
+    margin: 1em;
+  }
+
+  &__artist {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    // padding-top: 2em;
+    flex-grow: 1;
+    border: 1px solid grey;
+  }
+
+  &__logo {
+    // max-width: 100%;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    margin: 0 auto;
+
+    &-image {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto;
+
+      &--zoom {
+        max-width: 300px;
+        // height: 300px;
+        // margin: 0 auto;
+        // transition: transform 0.3s ease-in-out;
+        transform: scale(1.2);
+        // &:hover {
+        //
+        // }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .music {
+    &__wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__artist {
+      width: 100%;
+      padding: 1em;
+      border: none;
+    }
+
+    &__logo {
+      width: 200px;
+      height: 200px;
+
+      &-image {
+        max-width: 100%;
+        height: auto;
+        transform: scale(1);
+      }
+    }
+  }
+}

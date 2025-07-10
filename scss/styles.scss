@@ -1,0 +1,405 @@
+@use 'defaults';
+@use 'pages/art.scss';
+@use 'pages/music.scss';
+@use 'pages/commissions.scss';
+@use 'pages/support.scss';
+
+.body-container {
+  display: flex;
+  min-height: 824px;
+  max-height: 824px;
+  // overflow: scroll;
+  transition: 1s ease-in-out;
+  //   padding: 5px;
+}
+
+main {
+  color: white;
+  border: 1px solid grey;
+  background-color: rgba(0, 0, 0, 0.566);
+  background-blend-mode: darken;
+  flex-grow: 1;
+  overflow: scroll;
+}
+
+.aside {
+  //   flex-grow: 0.5;
+  // border-top: 1px solid grey;
+  background-image: url('/assets/images/bevels/nav\ bg.jpg');
+  background-size: cover;
+  // background-position: center;
+  background-blend-mode: color-dodge;
+  background-color: rgba(0, 0, 0, 0.244);
+  max-width: 180px;
+  min-width: 180px;
+  position: relative;
+
+  &__frame {
+    position: absolute;
+    left: -76px;
+    top: -28px;
+    pointer-events: none;
+  }
+  // margin: 2em;
+  // height: 100%;
+}
+
+ul,
+li,
+a {
+  all: unset;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.5);
+  }
+}
+
+table,
+th,
+td {
+  border: 1px solid grey;
+}
+
+th {
+  color: rgb(255, 255, 255);
+  font-family: 'carta marina';
+}
+
+section {
+  border: 1px solid grey;
+  padding: 1em;
+  margin: 1em;
+
+  &.section {
+    &--profile-card {
+      border: 0;
+    }
+  }
+}
+
+h1,
+h2 {
+  font-family: 'Cambridge', serif;
+  display: flex;
+  font-size: 3em;
+  margin-bottom: 0;
+  margin-top: 15px;
+  color: rgb(235, 240, 255);
+  margin-left: 0.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.title {
+  &::after {
+    content: '';
+    width: 150px;
+    height: 50px;
+    background-image: url(/assets/images/Simple\ Underline\ Bevel.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 10px;
+    filter: brightness(3);
+    transform: scale(-1, -1);
+    right: 100px;
+    // left: 10px;
+  }
+}
+
+.nav {
+  &--mobile {
+    @media only screen and (min-width: 600px) {
+      display: none;
+    }
+  }
+
+  font-family: 'Amador', serif;
+  font-size: 1.1em;
+  padding: 0.5em;
+  padding-top: 1em;
+  &__list {
+    margin-left: -0.7em;
+
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+
+    &-item {
+      // font-size: 1.2em;
+      margin-bottom: -1.4em;
+      // outline: 1px solid red;
+
+      &--logo {
+        img {
+          max-width: 120px;
+          position: relative;
+          transform: scale(1.2);
+          margin-left: 1.5em;
+          margin-bottom: 2em;
+        }
+      }
+      a {
+        color: white;
+      }
+    }
+  }
+
+  &__link {
+    margin: 0;
+    padding: 0;
+    // margin-left: 5px;
+    width: 100px;
+    height: 20px;
+    // outline: 1px solid rgb(29, 131, 152);
+
+    &-container {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-text {
+      margin: 0;
+      margin-left: 2.5em;
+      letter-spacing: 2px;
+    }
+
+    &-underline {
+      pointer-events: none;
+      // margin-top: -5px;
+      // outline: 1px solid blue;
+      // max-height: 20px;
+      width: 170px;
+    }
+  }
+}
+
+.hero {
+  padding: 0;
+  max-height: 180px;
+  overflow: hidden;
+  & img {
+    background-blend-mode: darken;
+    position: relative;
+    bottom: 60px;
+    width: 100%;
+  }
+  &__header {
+    padding: 20px 0;
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__list-item {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    // overflow: hidden;
+    max-width: 200px;
+    max-height: 50px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: scale(1.05);
+      // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &::after {
+      content: '';
+      mix-blend-mode: overlay;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    &--bevel {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      opacity: 0.8; // Slightly transparent for a subtle effect
+    }
+
+    &:hover {
+      filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.6))
+        drop-shadow(0 0 20px rgba(255, 223, 0, 0.4));
+    }
+  }
+}
+
+.profile-card {
+  // outline: 1px solid red;
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  max-width: 100%;
+
+  &__icon {
+    display: flex;
+    flex-direction: column;
+    max-width: 75px;
+    height: 75px;
+
+    &::after {
+      content: url(/assets/images/bevels/1x1\ frame.png);
+      transform: scale(0.75);
+      position: relative;
+      width: 75px;
+      height: 75px;
+      top: -97px;
+      right: 20px;
+    }
+  }
+
+  &__title-image {
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  &__content {
+    flex: 2;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__quote {
+    font-size: 1.25em;
+    font-style: italic;
+    color: #a5a5a5;
+    display: inline-block;
+    height: 100%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end);
+  }
+
+  &__text {
+    p {
+      margin: 0.5em 0;
+    }
+  }
+}
+
+.gifs {
+  padding: 0.5em;
+  &__image {
+    height: 100px;
+  }
+
+  &__banner {
+    max-width: 120px;
+    height: auto;
+  }
+}
+
+footer {
+  padding: 1em;
+}
+
+.socials {
+  padding: 1em;
+  display: flex;
+  &__list {
+    display: flex;
+    &-item {
+      margin-right: 1em;
+    }
+  }
+}
+
+.copyright {
+  margin-left: auto;
+}
+
+.scrolling-container {
+  width: 100%; /* Set the width of the container */
+  overflow: hidden; /* Hide the overflow */
+  white-space: nowrap; /* Prevent the image from wrapping */
+}
+
+.scrolling-container img {
+  display: inline-block;
+  animation: scroll-left 15s linear infinite; /* Adjust the duration as needed */
+}
+
+@media only screen and (max-width: 600px) {
+  .body-container {
+    flex-direction: column;
+    min-height: unset;
+    max-height: unset;
+  }
+  main {
+    overflow: unset;
+  }
+
+  aside {
+    display: none;
+  }
+  // flex: 2;
+}
+
+// ANIMATIONS
+@keyframes shine {
+  0% {
+    left: -100%; /* Starts the gradient outside the image */
+  }
+  100% {
+    left: 100%; /* Moves the gradient to the right */
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(200%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

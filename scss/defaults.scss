@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Carta Marina';
+  src: url('../fonts/674.woff2') format('truetype');
+}
+
+@font-face {
+  font-family: 'Amador';
+  src: url('../fonts/27848.woff2') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cambridge';
+  src: url('../fonts/Cambridge.otf') format('opentype');
+}
+
+html {
+  background-image: url('/assets/images/bg.jpg');
+  /* background-position: left; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  background-color: rgb(30, 33, 41);
+  height: 100lvh;
+  width: 100lvw;
+}
+
+body {
+  color: white;
+  margin: 0;
+  margin-top: 2em;
+  padding-top: 2em;
+  // padding: 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    // max-width: 400px;
+    padding: 0;
+  }
+}

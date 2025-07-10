@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexi's Art</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <meta
+      property="og:description"
+      content="Enter my fricking domain if u dare!!"
+    />
+    <meta
+      property="og:image"
+      content="https://amaryllisno.neocities.org/assets/images/03052022.png"
+    />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+
+  <body>
+    <div class="body-container">
+      <aside class="aside" id="aside"></aside>
+      <main>
+        <h1 class="title">Gallery</h1>
+        <section class="section section--profile-card">
+          <div class="profile-card">
+            <div class="profile-card__icon" id="icon">
+              <img
+                class="profile-card__icon-image"
+                src="/assets/images/03052022.jpg"
+                alt="Amary Icon"
+              />
+            </div>
+            <div class="profile-card__content">
+              <cite class="profile-card__quote"
+                >"Eh, it's just some doodles... just a time-waster, really." </br> </cite
+              ></br>- Amary, after you asked to see her drawings.
+            </div>
+          </div>
+        </section>
+
+        <section id="art">
+        <h2>Personal artworks</h2>
+
+            <div class="gallery__wrapper">
+              <div class="gallery__artwork">
+                <img src="/assets/images/art/azure_steppe_by_amaryllisno_dgs1edv.jpg" alt="Azure Steppe artwork" loading="lazy">
+              </div>
+              <div class="gallery__artwork">
+                <img src="/assets/images/art/looking_up_by_amaryllisno_df7vz0j.jpg" alt="Looking up artwork" loading="lazy">
+              </div>
+              <div class="gallery__artwork">
+                <img src="/assets/images/art/stalker.jpg" alt="Stalker artwork" loading="lazy">
+              </div>
+              <div class="gallery__artwork">
+                <img src="/assets/images/art/strata rendered.jpg" alt="Strata rendered artwork" loading="lazy">
+              </div>
+               <div class="gallery__artwork">
+                <img src="/assets/images/art/where we going-protected-intensity-DEFAULT-V2.jpg" alt="Amary traversing a flowerfield landscape" loading="lazy">
+              </div>
+            </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- Lightbox Modal -->
+    <div class="lightbox">
+      <div class="lightbox__content">
+        <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <img class="lightbox__image" src="" alt="">
+        <button class="lightbox__nav lightbox__nav--next" aria-label="Next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox__caption"></div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="mobile-nav"></div>
+      <ul class="socials socials__list">
+        <li class="socials__list-item">
+          <a href="https://amaryllis.no">Old Website</a>
+        </li>
+        <li class="socials__list-item">
+          <a href="https://bsky.app/profile/amaryllis.no">Bluesky</a>
+        </li>
+        <li class="socials__list-item">
+          <a href="https://www.instagram.com/amaryllis_no/">Instagram</a>
+        </li>
+        <li class="socials__list-item">
+          <a href="https://sharper-fangs.null00.no/">null.no | Sharper Fangs</a>
+        </li>
+      </ul>
+      <div style="display: flex; justify-content: center">
+        <img
+          style="max-width: 100%; height: auto"
+          src="/assets/images/horizontal bevel.png"
+          alt="Horizontal Bevel"
+          srcset=""
+        />
+      </div>
+      <div id="copyright"></div>
+    </footer>
+    <script type="module" src="js/renderNav.js"></script>
+    <script src="js/gallery.js"></script>
+  </body>
+</html>
