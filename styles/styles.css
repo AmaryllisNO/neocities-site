@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Carta Marina";
   src: url("../fonts/674.woff2") format("truetype");
@@ -281,19 +282,60 @@ body {
 }
 .music__logo {
   width: 250px;
-  height: 250px;
+  height: 100px;
   display: flex;
   margin: 0 auto;
 }
 .music__logo-image {
   max-width: 100%;
-  height: auto;
+  height: 100px;
   object-fit: contain;
   margin: 0 auto;
 }
-.music__logo-image--zoom {
-  max-width: 300px;
+.music__logo-image--amaryllis {
+  margin-top: 1.2em;
+  max-width: 200px;
+  max-height: 100px;
   transform: scale(1.2);
+}
+.music__logo-image--null {
+  margin-top: 1.2em;
+  max-height: 100px;
+  transform: scale(1.3);
+}
+.music__content {
+  margin: 0;
+  padding: 1em;
+  padding-top: 0;
+  text-align: left;
+}
+.music__table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+.music__table th,
+.music__table td {
+  border: none;
+  padding: 0.5em;
+  text-align: left;
+  border-bottom: 1px solid grey;
+}
+.music__table th {
+  font-weight: normal;
+}
+.music__table-row--segmented ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.music__table-row--dotted li::after {
+  content: " · ";
+  font-weight: bold;
+}
+.music__table-row--dotted li:last-child::after {
+  content: "";
 }
 
 @media only screen and (max-width: 600px) {
@@ -303,17 +345,25 @@ body {
   }
   .music__artist {
     width: 100%;
-    padding: 1em;
     border: none;
   }
   .music__logo {
     width: 200px;
-    height: 200px;
+    margin-left: 0;
+    height: 80px;
   }
   .music__logo-image {
     max-width: 100%;
-    height: auto;
     transform: scale(1);
+  }
+  .music__logo-image--amaryllis {
+    max-width: 200px;
+    max-height: 80px;
+  }
+  .music__logo-image--null {
+    margin-top: 0;
+    max-height: 80px;
+    transform: scale(1.4);
   }
 }
 .commissions__paragraph {
