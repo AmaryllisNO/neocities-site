@@ -53,6 +53,7 @@
     width: 100%;
     border-collapse: collapse;
     // margin-top: 3em;
+    border: 1px solid grey;
     border: none;
 
     th,
@@ -124,6 +125,26 @@
           margin-top: 0;
           max-height: 80px;
           transform: scale(1.4);
+        }
+      }
+    }
+    &__table {
+      th,
+      td {
+        padding: 0.5em 0.3em; // Reduce padding on mobile
+        font-size: 0.9em; // Optional: slightly smaller font
+        // flex-wrap: wrap;
+      }
+
+      ul {
+        flex-wrap: wrap;
+        list-style: circle;
+      }
+      li {
+        margin-right: 0.5em;
+        ::after {
+          content: ' · ';
+          font-weight: bold;
         }
       }
     }

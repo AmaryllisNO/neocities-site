@@ -1,4 +1,7 @@
 @use 'defaults';
+
+@use 'components/player.scss';
+
 @use 'pages/art.scss';
 @use 'pages/music.scss';
 @use 'pages/commissions.scss';
@@ -115,16 +118,15 @@ h2 {
 }
 
 .nav {
-  &--mobile {
-    @media only screen and (min-width: 600px) {
-      display: none;
-    }
-  }
-
   font-family: 'Amador', serif;
   font-size: 1.1em;
   padding: 0.5em;
-  padding-top: 1em;
+  // padding-top: 1em;
+
+  &--mobile {
+    display: none;
+  }
+
   &__list {
     margin-left: -0.7em;
 
@@ -361,6 +363,20 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
+  .nav {
+    &--mobile {
+      display: block;
+    }
+  }
+
+  .profile-card {
+    &__quote {
+      // width: 100px;
+      text-wrap: wrap;
+      animation: none;
+    }
+  }
+
   .body-container {
     flex-direction: column;
     min-height: unset;
