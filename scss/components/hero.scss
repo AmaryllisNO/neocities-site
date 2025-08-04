@@ -1,0 +1,77 @@
+.hero {
+  padding: 0;
+  max-height: 180px;
+  overflow: hidden;
+  & img {
+    background-blend-mode: darken;
+    position: relative;
+    bottom: 60px;
+    width: 100%;
+  }
+  &__header {
+    padding: 20px 0;
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__list-item {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    // overflow: hidden;
+    max-width: 200px;
+    max-height: 50px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: scale(1.05);
+      // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &::after {
+      content: '';
+      mix-blend-mode: overlay;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    &--bevel {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      opacity: 0.8; // Slightly transparent for a subtle effect
+    }
+
+    &:hover {
+      filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.6))
+        drop-shadow(0 0 20px rgba(255, 223, 0, 0.4));
+    }
+  }
+}

@@ -79,10 +79,18 @@
       }
 
       &--dotted {
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-wrap: wrap;
+        }
         li {
           &::after {
             content: ' · ';
             font-weight: bold;
+            margin-right: 0.5em;
           }
 
           &:last-child::after {

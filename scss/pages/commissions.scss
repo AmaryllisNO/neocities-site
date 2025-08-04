@@ -6,6 +6,142 @@
 
   &__link {
     text-decoration: underline;
-    color: rgb(44, 170, 254);
+    color: rgb(254, 44, 159);
+  }
+
+  &__section {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    background-color: rgba(141, 141, 141, 0.053);
+  }
+
+  &__image-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin-top: 1em;
+    // max-width: min-content;
+  }
+
+  &__image {
+    max-width: 310px;
+    height: auto;
+    object-fit: cover;
+    image-rendering: optimizeSpeed;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  &__content {
+    margin: 0 auto;
+    padding-top: 0;
+    text-align: left;
+    font-size: 1.2em;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: #777 1px solid;
+    // max-width: 800px;
+  }
+
+  &__content-list {
+    list-style-type: upper-roman;
+    padding-left: 0;
+    margin-top: 1em;
+
+    margin-bottom: 1em;
+
+    li {
+      margin-bottom: 0.5em;
+
+      &::marker {
+        color: rgb(44, 170, 254);
+      }
+
+      a {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__content-sublist {
+    list-style-type: georgian;
+    padding-left: 1em;
+    margin-top: 0.5em;
+
+    li {
+      margin-bottom: 0.5em;
+
+      a {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__accordion {
+    background-color: #eeeeee00;
+    color: #ff5a5a;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+
+    &--active,
+    &:hover {
+      background-color: #cccccc00;
+    }
+
+    &::after {
+      content: '\002B'; /* Unicode character for "plus" sign */
+      color: #777;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+    &--active::after {
+      content: '\2212'; /* Unicode character for "minus" sign */
+    }
+  }
+
+  &__panel {
+    padding: 0 18px;
+    color: #c1c1c1;
+    background-color: rgba(255, 255, 255, 0);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+}
+
+@media (max-width: 768px) {
+  .commissions {
+    &__image-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__image {
+      max-width: 100%;
+      margin-bottom: 1em;
+    }
   }
 }

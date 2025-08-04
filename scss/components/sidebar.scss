@@ -1,0 +1,21 @@
+.aside {
+  //   flex-grow: 0.5;
+  // border-top: 1px solid grey;
+  background-image: url('/assets/images/bevels/nav\ bg.jpg');
+  background-size: cover;
+  // background-position: center;
+  background-blend-mode: color-dodge;
+  background-color: rgba(0, 0, 0, 0.244);
+  max-width: 180px;
+  min-width: 180px;
+  position: relative;
+
+  &__frame {
+    position: absolute;
+    left: -76px;
+    top: -28px;
+    pointer-events: none;
+  }
+  // margin: 2em;
+  // height: 100%;
+}

@@ -7,6 +7,7 @@
     font-family: 'Carta Marina', serif;
     font-size: large;
     padding-top: 1em;
+    padding-left: 0;
     // outline: 1px solid green;
 
     &-item {
@@ -42,6 +43,8 @@
         position: relative;
         margin-bottom: 1em;
         margin-right: 1em;
+
+        color: rgb(255, 255, 255);
 
         &::after {
           content: '';

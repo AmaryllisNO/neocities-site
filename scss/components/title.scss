@@ -1,0 +1,16 @@
+.title {
+  &::after {
+    content: '';
+    width: 150px;
+    height: 50px;
+    background-image: url(/assets/images/Simple\ Underline\ Bevel.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 10px;
+    filter: brightness(3);
+    transform: scale(-1, -1);
+    right: 100px;
+    // left: 10px;
+  }
+}
