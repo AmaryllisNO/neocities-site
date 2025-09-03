@@ -132,6 +132,121 @@
   }
 }
 
+// Collaborations section
+.collaborations {
+  &__content {
+    display: none;
+    margin-top: 25px;
+
+    &.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+  }
+
+  &__group {
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__subheading {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ffffff;
+    border-left: 4px solid #ef3b65;
+    padding-left: 12px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+}
+
+// Collaboration cards
+.collaboration-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 12px;
+    // background-color: #2a2835;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__name {
+    font-size: 1em;
+    color: #ffffff;
+    margin: 0;
+  }
+}
+
+.toggle-button {
+  background-color: #ef3b65;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background-color: #ff6b8b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 59, 101, 0.3);
+  }
+
+  &__icon {
+    transition: transform 0.3s ease;
+  }
+
+  &.active &__icon {
+    transform: rotate(180deg);
+  }
+}
+
+// Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
   .commissions {
     &__image-container {
@@ -142,6 +257,20 @@
     &__image {
       max-width: 100%;
       margin-bottom: 1em;
+    }
+  }
+
+  .collaborations__grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  .collaboration-card {
+    padding: 12px;
+
+    &__image {
+      width: 70px;
+      height: 70px;
     }
   }
 }
