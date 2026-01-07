@@ -26,6 +26,75 @@ document.addEventListener('DOMContentLoaded', function () {
   const url = new URL(window.location.href);
 
   const artworks = document.querySelectorAll('.gallery__artwork img');
+
+  // Justified layout function: groups images into rows that fill the container width
+  function justifyGallery(container, options = {}) {
+    const targetRowHeight = options.targetRowHeight || 220; // preferred row height in px
+    const items = Array.from(container.querySelectorAll('.gallery__artwork'));
+    if (items.length === 0) return;
+
+    const imgs = items.map(i => i.querySelector('img'));
+
+    const waitForImages = () => Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(res => { img.onload = img.onerror = res; })));
+
+    const layout = () => {
+      const containerWidth = Math.floor(container.clientWidth);
+      const gapStr = getComputedStyle(container).gap || getComputedStyle(container).columnGap || '10px';
+      const gap = parseFloat(gapStr) || 10;
+
+      let row = [];
+      let rowRatios = 0;
+
+      // reset styles
+      items.forEach(it => { it.style.width = ''; it.style.height = ''; it.style.margin = ''; });
+
+      for (let i = 0; i < items.length; i++) {
+        const it = items[i];
+        const img = imgs[i];
+        const ratio = (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : (img.width / img.height) || 1;
+
+        row.push({ it, img, ratio });
+        rowRatios += ratio;
+
+        const totalGap = gap * (row.length - 1);
+        const rowWidthAtTarget = rowRatios * targetRowHeight + totalGap;
+
+        if (rowWidthAtTarget >= containerWidth || i === items.length - 1) {
+          // finalize this row; compute row height to exactly fill width
+          const height = (containerWidth - totalGap) / rowRatios;
+
+          // apply sizes
+          row.forEach(({ it, img, ratio }) => {
+            const w = Math.round(ratio * height);
+            it.style.width = w + 'px';
+            it.style.height = Math.round(height) + 'px';
+            it.style.flex = '0 0 ' + w + 'px';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'contain';
+            img.style.display = 'block';
+          });
+
+          // reset row
+          row = [];
+          rowRatios = 0;
+        }
+      }
+    };
+
+    waitForImages().then(() => {
+      layout();
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(layout, 150);
+      });
+    }).catch(() => layout());
+  }
+
+  // run justified layout on the gallery wrapper
+  const galleryWrapperEl = document.querySelector('.gallery__wrapper');
+  if (galleryWrapperEl) justifyGallery(galleryWrapperEl, { targetRowHeight: 220 });
   let currentIndex = 0;
 
   // Helper to find index by data-id

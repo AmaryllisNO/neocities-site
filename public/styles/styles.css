@@ -1,18 +1,18 @@
 @charset "UTF-8";
 @font-face {
-  font-family: 'Carta Marina';
-  src: url('../fonts/674.woff2') format('truetype');
+  font-family: "Carta Marina";
+  src: url("../fonts/674.woff2") format("truetype");
 }
 @font-face {
-  font-family: 'Amador';
-  src: url('../fonts/27848.woff2') format('truetype');
+  font-family: "Amador";
+  src: url("../fonts/27848.woff2") format("truetype");
 }
 @font-face {
-  font-family: 'Cambridge';
-  src: url('../fonts/Cambridge.otf') format('opentype');
+  font-family: "Cambridge";
+  src: url("../fonts/Cambridge.otf") format("opentype");
 }
 html {
-  background-image: url('/assets/images/bg.jpg');
+  background-image: url("/assets/images/bg.jpg");
   /* background-position: left; */
   background-size: cover;
   background-position: center;
@@ -58,7 +58,7 @@ body {
 }
 
 .nav {
-  font-family: 'Amador', serif;
+  font-family: "Amador", serif;
   font-size: 1.1em;
   padding: 0.5em;
 }
@@ -110,7 +110,7 @@ body {
 }
 
 .aside {
-  background-image: url('/assets/images/bevels/nav bg.jpg');
+  background-image: url("/assets/images/bevels/nav bg.jpg");
   background-size: cover;
   background-blend-mode: color-dodge;
   background-color: rgba(0, 0, 0, 0.244);
@@ -126,7 +126,7 @@ body {
 }
 
 .title::after {
-  content: '';
+  content: "";
   width: 150px;
   height: 50px;
   background-image: url(/assets/images/Simple\ Underline\ Bevel.png);
@@ -184,7 +184,7 @@ body {
   transform: scale(1.05);
 }
 .hero__image-wrapper::after {
-  content: '';
+  content: "";
   mix-blend-mode: overlay;
 }
 .hero__image {
@@ -201,8 +201,7 @@ body {
   opacity: 0.8;
 }
 .hero__image:hover {
-  filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.6))
-    drop-shadow(0 0 20px rgba(255, 223, 0, 0.4));
+  filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 223, 0, 0.4));
 }
 
 .profile-card {
@@ -260,9 +259,10 @@ body {
 }
 .gallery__wrapper {
   margin-top: 1em;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: 150px;
+  /* Use flex so we can size individual items to create a justified layout */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 10px;
 }
 .gallery__artwork {
@@ -271,6 +271,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  /* center image content so different aspect ratios look tidy */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .gallery__artwork:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -279,9 +283,12 @@ body {
   transform: scale(1.1);
 }
 .gallery__artwork img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  /* Show the entire image (preserve aspect ratio) */
+  max-width: 100%;
+  max-height: 360px; /* keeps very tall images from overwhelming layout */
+  width: auto;
+  height: auto;
+  object-fit: contain;
   display: block;
   transition: transform 0.5s ease;
 }
@@ -554,12 +561,12 @@ body {
   flex-wrap: wrap;
 }
 .music__table-row--dotted li::after {
-  content: ' · ';
+  content: " · ";
   font-weight: bold;
   margin-right: 0.5em;
 }
 .music__table-row--dotted li:last-child::after {
-  content: '';
+  content: "";
 }
 
 @media only screen and (max-width: 600px) {
@@ -602,7 +609,7 @@ body {
     margin-right: 0.5em;
   }
   .music__table li ::after {
-    content: ' · ';
+    content: " · ";
     font-weight: bold;
   }
 }
@@ -693,19 +700,18 @@ body {
   font-size: 15px;
   transition: 0.4s;
 }
-.commissions__accordion--active,
-.commissions__accordion:hover {
+.commissions__accordion--active, .commissions__accordion:hover {
   background-color: rgba(204, 204, 204, 0);
 }
 .commissions__accordion::after {
-  content: '+'; /* Unicode character for "plus" sign */
+  content: "+"; /* Unicode character for "plus" sign */
   color: #777;
   font-weight: bold;
   float: right;
   margin-left: 5px;
 }
 .commissions__accordion--active::after {
-  content: '−'; /* Unicode character for "minus" sign */
+  content: "−"; /* Unicode character for "minus" sign */
 }
 .commissions__panel {
   padding: 0 18px;
@@ -716,13 +722,21 @@ body {
   transition: max-height 0.2s ease-out;
 }
 
-.collaborations__content {
-  display: none;
+.collaborations__carousel {
   margin-top: 25px;
+  overflow: hidden;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px 0;
 }
-.collaborations__content.active {
-  display: block;
-  animation: fadeIn 0.5s ease;
+.collaborations__carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 0 20px;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
 }
 .collaborations__group {
   margin-bottom: 40px;
@@ -749,6 +763,8 @@ body {
   padding: 15px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 0 0 auto;
+  width: 120px;
 }
 .collaboration-card:hover {
   transform: translateY(-5px);
@@ -775,57 +791,6 @@ body {
   margin: 0;
 }
 
-/* Carousel overrides (compiled CSS) - ensures horizontal, non-wrapping track */
-.collaborations__carousel {
-  margin-top: 25px;
-  overflow: hidden;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 20px 0;
-}
-
-.collaborations__carousel-track {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 20px;
-  padding: 0 20px;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-}
-
-.collaboration-card {
-  flex: 0 0 auto;
-  width: 120px;
-}
-
-.toggle-button {
-  background-color: #ef3b65;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-top: 20px;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.toggle-button:hover {
-  background-color: #ff6b8b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(239, 59, 101, 0.3);
-}
-.toggle-button__icon {
-  transition: transform 0.3s ease;
-}
-.toggle-button.active .toggle-button__icon {
-  transform: rotate(180deg);
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -845,12 +810,13 @@ body {
     max-width: 100%;
     margin-bottom: 1em;
   }
-  .collaborations__grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  .collaborations__carousel-track {
     gap: 15px;
+    padding: 0 15px;
   }
   .collaboration-card {
     padding: 12px;
+    width: 100px;
   }
   .collaboration-card__image {
     width: 70px;
@@ -861,7 +827,7 @@ body {
   display: flex;
   flex-direction: column;
   list-style: square;
-  font-family: 'Carta Marina', serif;
+  font-family: "Carta Marina", serif;
   font-size: large;
   padding-top: 1em;
   padding-left: 0;
@@ -881,7 +847,7 @@ body {
 .support__list-item p {
   margin: 0;
   padding: 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   flex: 6;
   color: rgb(200, 204, 208);
 }
@@ -893,7 +859,7 @@ body {
   color: rgb(255, 255, 255);
 }
 .support__list-item a::after {
-  content: '';
+  content: "";
   margin: 0 auto;
   pointer-events: none;
   display: flex;
@@ -960,7 +926,7 @@ td {
 
 th {
   color: rgb(255, 255, 255);
-  font-family: 'carta marina';
+  font-family: "carta marina";
 }
 
 section {
@@ -974,7 +940,7 @@ section.section--profile-card {
 
 h1,
 h2 {
-  font-family: 'Cambridge', serif;
+  font-family: "Cambridge", serif;
   display: flex;
   font-size: 3em;
   margin-bottom: 0;
