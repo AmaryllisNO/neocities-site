@@ -1,18 +1,18 @@
 @charset "UTF-8";
 @font-face {
-  font-family: "Carta Marina";
-  src: url("../fonts/674.woff2") format("truetype");
+  font-family: 'Carta Marina';
+  src: url('../fonts/674.woff2') format('truetype');
 }
 @font-face {
-  font-family: "Amador";
-  src: url("../fonts/27848.woff2") format("truetype");
+  font-family: 'Amador';
+  src: url('../fonts/27848.woff2') format('truetype');
 }
 @font-face {
-  font-family: "Cambridge";
-  src: url("../fonts/Cambridge.otf") format("opentype");
+  font-family: 'Cambridge';
+  src: url('../fonts/Cambridge.otf') format('opentype');
 }
 html {
-  background-image: url("/assets/images/bg.jpg");
+  background-image: url('/assets/images/bg.jpg');
   /* background-position: left; */
   background-size: cover;
   background-position: center;
@@ -58,7 +58,7 @@ body {
 }
 
 .nav {
-  font-family: "Amador", serif;
+  font-family: 'Amador', serif;
   font-size: 1.1em;
   padding: 0.5em;
 }
@@ -110,7 +110,7 @@ body {
 }
 
 .aside {
-  background-image: url("/assets/images/bevels/nav bg.jpg");
+  background-image: url('/assets/images/bevels/nav bg.jpg');
   background-size: cover;
   background-blend-mode: color-dodge;
   background-color: rgba(0, 0, 0, 0.244);
@@ -126,7 +126,7 @@ body {
 }
 
 .title::after {
-  content: "";
+  content: '';
   width: 150px;
   height: 50px;
   background-image: url(/assets/images/Simple\ Underline\ Bevel.png);
@@ -184,7 +184,7 @@ body {
   transform: scale(1.05);
 }
 .hero__image-wrapper::after {
-  content: "";
+  content: '';
   mix-blend-mode: overlay;
 }
 .hero__image {
@@ -201,7 +201,8 @@ body {
   opacity: 0.8;
 }
 .hero__image:hover {
-  filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 223, 0, 0.4));
+  filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.6))
+    drop-shadow(0 0 20px rgba(255, 223, 0, 0.4));
 }
 
 .profile-card {
@@ -553,12 +554,12 @@ body {
   flex-wrap: wrap;
 }
 .music__table-row--dotted li::after {
-  content: " · ";
+  content: ' · ';
   font-weight: bold;
   margin-right: 0.5em;
 }
 .music__table-row--dotted li:last-child::after {
-  content: "";
+  content: '';
 }
 
 @media only screen and (max-width: 600px) {
@@ -601,7 +602,7 @@ body {
     margin-right: 0.5em;
   }
   .music__table li ::after {
-    content: " · ";
+    content: ' · ';
     font-weight: bold;
   }
 }
@@ -692,18 +693,19 @@ body {
   font-size: 15px;
   transition: 0.4s;
 }
-.commissions__accordion--active, .commissions__accordion:hover {
+.commissions__accordion--active,
+.commissions__accordion:hover {
   background-color: rgba(204, 204, 204, 0);
 }
 .commissions__accordion::after {
-  content: "+"; /* Unicode character for "plus" sign */
+  content: '+'; /* Unicode character for "plus" sign */
   color: #777;
   font-weight: bold;
   float: right;
   margin-left: 5px;
 }
 .commissions__accordion--active::after {
-  content: "−"; /* Unicode character for "minus" sign */
+  content: '−'; /* Unicode character for "minus" sign */
 }
 .commissions__panel {
   padding: 0 18px;
@@ -773,6 +775,30 @@ body {
   margin: 0;
 }
 
+/* Carousel overrides (compiled CSS) - ensures horizontal, non-wrapping track */
+.collaborations__carousel {
+  margin-top: 25px;
+  overflow: hidden;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px 0;
+}
+
+.collaborations__carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 0 20px;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.collaboration-card {
+  flex: 0 0 auto;
+  width: 120px;
+}
+
 .toggle-button {
   background-color: #ef3b65;
   color: white;
@@ -835,7 +861,7 @@ body {
   display: flex;
   flex-direction: column;
   list-style: square;
-  font-family: "Carta Marina", serif;
+  font-family: 'Carta Marina', serif;
   font-size: large;
   padding-top: 1em;
   padding-left: 0;
@@ -855,7 +881,7 @@ body {
 .support__list-item p {
   margin: 0;
   padding: 0;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   flex: 6;
   color: rgb(200, 204, 208);
 }
@@ -867,7 +893,7 @@ body {
   color: rgb(255, 255, 255);
 }
 .support__list-item a::after {
-  content: "";
+  content: '';
   margin: 0 auto;
   pointer-events: none;
   display: flex;
@@ -934,7 +960,7 @@ td {
 
 th {
   color: rgb(255, 255, 255);
-  font-family: "carta marina";
+  font-family: 'carta marina';
 }
 
 section {
@@ -948,7 +974,7 @@ section.section--profile-card {
 
 h1,
 h2 {
-  font-family: "Cambridge", serif;
+  font-family: 'Cambridge', serif;
   display: flex;
   font-size: 3em;
   margin-bottom: 0;
