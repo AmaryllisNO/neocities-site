@@ -1,6 +1,20 @@
+import artworksData from '../assets/images/art/showcase/images.json' with { type: 'json' };
+console.log('artworksData', artworksData);
+
 document.addEventListener('DOMContentLoaded', function () {
   // Gallery navigation
   const galleryWrapper = document.querySelector('.gallery__wrapper');
+
+  // create images dynamically from JSON data
+  const artworkHtml = artworksData
+    .map((artwork) => {
+      return `<a class="gallery__artwork" href="?img=${artwork.id}">
+        <img data-id="${artwork.id}" src="../../assets/images/art/showcase/${artwork.filename}" alt="${artwork.alt}" loading="lazy">
+      </a>`;
+    })
+    .join('');
+
+  galleryWrapper.innerHTML = artworkHtml;
 
   // Lightbox elements
   const lightbox = document.querySelector('.lightbox');

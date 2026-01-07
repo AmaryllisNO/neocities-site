@@ -23,7 +23,6 @@
     flex-wrap: wrap;
 
     margin-top: 1em;
-    // max-width: min-content;
   }
 
   &__image {
@@ -33,7 +32,6 @@
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
-    // image-rendering: crisp-edges;
   }
 
   &__content {
