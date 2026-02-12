@@ -1,22 +1,22 @@
 // defaults
-@use 'defaults';
+@use '_defaults';
 
 // mixins
-@use 'variables.scss';
+@use '_variables.scss';
 
 // components
-@use 'components/player.scss';
-@use 'components/nav.scss';
-@use 'components/sidebar.scss';
-@use 'components/title.scss';
-@use 'components/hero.scss';
-@use 'components/profile-card.scss';
+@use 'components/_player.scss';
+@use 'components/_nav.scss';
+@use 'components/_sidebar.scss';
+@use 'components/_title.scss';
+@use 'components/_hero.scss';
+@use 'components/_profile-card.scss';
 
 // pages
-@use 'pages/art.scss';
-@use 'pages/music.scss';
-@use 'pages/commissions.scss';
-@use 'pages/support.scss';
+@use 'pages/_art.scss';
+@use 'pages/_music.scss';
+@use 'pages/_commissions.scss';
+@use 'pages/_support.scss';
 
 .body-container {
   display: flex;
