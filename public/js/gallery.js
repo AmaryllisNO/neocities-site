@@ -33,25 +33,44 @@ document.addEventListener('DOMContentLoaded', function () {
     const items = Array.from(container.querySelectorAll('.gallery__artwork'));
     if (items.length === 0) return;
 
-    const imgs = items.map(i => i.querySelector('img'));
+    const imgs = items.map((i) => i.querySelector('img'));
 
-    const waitForImages = () => Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(res => { img.onload = img.onerror = res; })));
+    const waitForImages = () =>
+      Promise.all(
+        imgs.map((img) =>
+          img.complete
+            ? Promise.resolve()
+            : new Promise((res) => {
+                img.onload = img.onerror = res;
+              }),
+        ),
+      );
 
     const layout = () => {
       const containerWidth = Math.floor(container.clientWidth);
-      const gapStr = getComputedStyle(container).gap || getComputedStyle(container).columnGap || '10px';
+      const gapStr =
+        getComputedStyle(container).gap ||
+        getComputedStyle(container).columnGap ||
+        '10px';
       const gap = parseFloat(gapStr) || 10;
 
       let row = [];
       let rowRatios = 0;
 
       // reset styles
-      items.forEach(it => { it.style.width = ''; it.style.height = ''; it.style.margin = ''; });
+      items.forEach((it) => {
+        it.style.width = '';
+        it.style.height = '';
+        it.style.margin = '';
+      });
 
       for (let i = 0; i < items.length; i++) {
         const it = items[i];
         const img = imgs[i];
-        const ratio = (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : (img.width / img.height) || 1;
+        const ratio =
+          img.naturalWidth && img.naturalHeight
+            ? img.naturalWidth / img.naturalHeight
+            : img.width / img.height || 1;
 
         row.push({ it, img, ratio });
         rowRatios += ratio;
@@ -82,19 +101,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
 
-    waitForImages().then(() => {
-      layout();
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(layout, 150);
-      });
-    }).catch(() => layout());
+    waitForImages()
+      .then(() => {
+        layout();
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(layout, 150);
+        });
+      })
+      .catch(() => layout());
   }
 
   // run justified layout on the gallery wrapper
   const galleryWrapperEl = document.querySelector('.gallery__wrapper');
-  if (galleryWrapperEl) justifyGallery(galleryWrapperEl, { targetRowHeight: 220 });
+  if (galleryWrapperEl)
+    justifyGallery(galleryWrapperEl, { targetRowHeight: 220 });
   let currentIndex = 0;
 
   // Helper to find index by data-id

@@ -319,7 +319,6 @@ body {
   color: #666;
 }
 
-/* Lightbox - matches your existing hover animation style */
 .lightbox {
   position: fixed;
   top: 0;
@@ -465,8 +464,6 @@ body {
 }
 @media (max-width: 768px) and (max-width: 768px) {
   .lightbox__nav {
-    position: fixed;
-    bottom: 20px;
     top: auto;
     margin: 0;
     padding: 12px;
