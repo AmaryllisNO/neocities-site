@@ -156,6 +156,7 @@ footer {
     flex-direction: column;
     min-height: unset;
     max-height: unset;
+    overflow: scroll;
   }
   main {
     overflow: unset;
