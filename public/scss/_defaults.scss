@@ -20,8 +20,9 @@ html {
   background-position: center;
   background-repeat: repeat;
   background-color: rgb(30, 33, 41);
-  height: 100lvh;
-  width: 100lvw;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 body {
@@ -30,7 +31,7 @@ body {
   margin-top: 2em;
   padding-top: 2em;
   // padding: 2em;
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 

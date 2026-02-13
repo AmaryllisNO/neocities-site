@@ -20,8 +20,7 @@
 
 .body-container {
   display: flex;
-  min-height: 824px;
-  max-height: 824px;
+  height: 824px;
   // overflow: scroll;
   transition: 1s ease-in-out;
   //   padding: 5px;
@@ -30,7 +29,7 @@
 main {
   color: white;
   border: 1px solid grey;
-  background-color: rgba(0, 0, 0, 0.566);
+  background-color: rgba(0, 0, 0, 0.388);
   background-blend-mode: darken;
   flex-grow: 1;
   overflow: scroll;
@@ -53,6 +52,7 @@ td {
 th {
   color: rgb(255, 255, 255);
   font-family: 'carta marina';
+  width: 150px;
 }
 
 section {
