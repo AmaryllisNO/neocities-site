@@ -21,8 +21,10 @@
 .body-container {
   display: flex;
   height: 824px;
+  max-width: 1250px;
   // overflow: scroll;
   transition: 1s ease-in-out;
+  margin: 0 auto;
   //   padding: 5px;
 }
 
@@ -101,6 +103,8 @@ p {
 
 footer {
   padding: 1em;
+  margin: 0 auto;
+  max-width: 1250px;
 }
 
 .socials {
