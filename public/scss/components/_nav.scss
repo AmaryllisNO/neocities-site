@@ -10,6 +10,7 @@
 
   &__list {
     margin-left: -0.7em;
+    padding-right: 0;
 
     display: flex;
     justify-content: left;
@@ -38,21 +39,12 @@
   }
 
   &__link {
-    margin: 0;
-    padding: 0;
-    // margin-left: 5px;
-    width: 100px;
-    height: 20px;
-    // outline: 1px solid rgb(29, 131, 152);
-
     &-container {
-      margin: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
 
     &-text {
+      // outline: 1px solid rgb(29, 131, 152);
+
       margin: 0;
       margin-left: 2.75em;
       letter-spacing: 2px;
