@@ -68,7 +68,25 @@ const gc_count_path = '';
       }
     };
   }
-
+  // If the page is opened via the file:// protocol, browsers send a "null" or no Origin header,
+  // and some APIs (or proxies) will reject the request with "Request is missing a valid Origin header".
+  // Detect this and provide a helpful message instead of attempting the fetch.
+  if (
+    typeof window !== 'undefined' &&
+    window.location &&
+    window.location.protocol === 'file:'
+  ) {
+    console.error(
+      'Visitor Count: Running from file:// — request will omit a valid Origin header. Serve the site over HTTP (for example: `npx serve .`) or host it so the request includes a proper Origin header.',
+    );
+    const visitor_count_elements = document.querySelectorAll(
+      visitor_count_selector || '.visitor-count',
+    );
+    visitor_count_elements.forEach((item) =>
+      item.appendChild(document.createTextNode('—')),
+    );
+    return;
+  }
   fetch(stats_url, {
     method: 'GET',
     mode: 'cors',
