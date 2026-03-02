@@ -30,7 +30,7 @@ const navigationHTML = (mode, pathPrefix) => {
   <nav class="nav ${mode === 'mobile' && 'nav--mobile'}">
     <ul class="nav nav__list">
       <li class="nav__list-item nav__list-item--logo">
-        <a href="/"
+        <a class="nav__link" href="/"
           ><img
             src="${pathPrefix}assets/images/amaryllis 2022 text logo with icon.png"
             alt="Amaryllis Logo"
