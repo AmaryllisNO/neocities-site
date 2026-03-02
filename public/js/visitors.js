@@ -57,7 +57,7 @@ const gc_count_path = '';
   let info_parser;
 
   if (visitor_count_source.toLowerCase() === 'neocities') {
-    stats_url = `https://weirdscifi.ratiosemper.com/neocities.php?sitename=${neocities_site_name}`;
+    stats_url = `https://proxy.corsfix.com/?https://neocities.org/api/info?sitename=${neocities_site_name}`;
     info_parser = function (data) {
       if (data.result === 'error') {
         throw new Error(
