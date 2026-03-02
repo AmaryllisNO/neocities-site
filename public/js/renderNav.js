@@ -73,7 +73,7 @@ const navigationHTML = (mode, pathPrefix) => {
         />
       </li>
         <li class="nav__list-item">
-        <a class="nav__link" href="/characters.html">
+        <a class="nav__link" href="/characters/index.html">
           <div class="nav__link-container">
             <p class="nav__link-text">Characters</p>
           </div>
