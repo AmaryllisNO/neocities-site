@@ -4,9 +4,7 @@
   overflow: hidden;
   & img {
     background-blend-mode: darken;
-    position: relative;
-    bottom: 150px;
-    width: 100%;
+    transform: translateY(-60px);
   }
   &__header {
     padding: 20px 0;
