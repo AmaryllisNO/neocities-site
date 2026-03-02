@@ -19,8 +19,9 @@
 
     &-item {
       // font-size: 1.2em;
-      margin-bottom: -1.4em;
-      // outline: 1px solid red;
+      margin-bottom: -0.1em;
+      margin-left: 5px;
+      height: 40px;
       list-style: none;
 
       &--logo {
@@ -46,9 +47,14 @@
       // outline: 1px solid rgb(29, 131, 152);
 
       margin: 0;
-      margin-left: 0.75em;
+      margin-left: 0.7em;
       letter-spacing: 2px;
       color: white;
+
+      /*   &:nth-child(1) {
+        margin-top: 0.5em;
+        text-align: right;
+      } */
     }
 
     &-underline {

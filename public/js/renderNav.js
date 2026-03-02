@@ -42,7 +42,7 @@ const navigationHTML = (mode, pathPrefix) => {
             <p class="nav__link-text">Art</p>
           </div>
             <img
-          class="nav__link-underline"
+          class="nav__link-underline "
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
