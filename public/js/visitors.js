@@ -69,7 +69,13 @@ const gc_count_path = '';
     };
   }
 
-  fetch(stats_url)
+  fetch(stats_url, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      Accept: 'application/json',
+    },
+  })
     .then(function (response) {
       console.log(response.status);
       if (response.ok) {
