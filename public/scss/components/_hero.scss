@@ -5,7 +5,7 @@
   & img {
     background-blend-mode: darken;
     position: relative;
-    bottom: 60px;
+    bottom: 150px;
     width: 100%;
   }
   &__header {
@@ -39,7 +39,9 @@
     max-width: 200px;
     max-height: 50px;
     margin: 0 auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
     display: flex;
     flex-direction: column;
