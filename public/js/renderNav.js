@@ -72,6 +72,18 @@ const navigationHTML = (mode, pathPrefix) => {
           alt=""
         />
       </li>
+        <li class="nav__list-item">
+        <a class="nav__link" href="/characters.html">
+          <div class="nav__link-container">
+            <p class="nav__link-text">Characters</p>
+          </div>
+        </a>
+        <img
+          class="nav__link-underline"
+          src="${pathPrefix}assets/images/Simple Underline Bevel.png"
+          alt=""
+        />
+      </li>
       <li class="nav__list-item">
         <a class="nav__link" href="${pathPrefix}commissions.html">
           <div class="nav__link-container">
