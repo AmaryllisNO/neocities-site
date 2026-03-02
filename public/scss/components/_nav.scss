@@ -40,12 +40,14 @@
   }
 
   &__link {
+    display: inline-block;
+    max-height: 30px;
+    // outline: 1px solid rgb(29, 131, 152);
+
     &-container {
     }
 
     &-text {
-      // outline: 1px solid rgb(29, 131, 152);
-
       margin: 0;
       margin-left: 0.7em;
       letter-spacing: 2px;
