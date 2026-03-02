@@ -1,6 +1,6 @@
 .nav {
   font-family: 'Amador', serif;
-  font-size: 1.1em;
+  font-size: 1.075em;
   padding: 0.5em;
   // padding-top: 1em;
 
@@ -46,17 +46,21 @@
       // outline: 1px solid rgb(29, 131, 152);
 
       margin: 0;
-      margin-left: 2.75em;
+      margin-left: 0.75em;
       letter-spacing: 2px;
       color: white;
     }
 
     &-underline {
       pointer-events: none;
-      // margin-top: -5px;
+      // margin-top: 100px;
       // outline: 1px solid blue;
       // max-height: 20px;
+      transform: scaleX(-1);
       width: 170px;
+
+      position: relative;
+      bottom: 30px;
     }
   }
 }

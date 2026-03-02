@@ -41,72 +41,78 @@ const navigationHTML = (mode, pathPrefix) => {
           <div class="nav__link-container">
             <p class="nav__link-text">Art</p>
           </div>
-        </a>
-        <img
+            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
+        </a>
+      
       </li>
       <li class="nav__list-item">
         <a class="nav__link" href="${pathPrefix}music.html">
           <div class="nav__link-container">
             <p class="nav__link-text">Music</p>
           </div>
-        </a>
-        <img
+           <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
+        </a>
+       
       </li>
       <li class="nav__list-item">
         <a class="nav__link" href="/journal/index.html">
           <div class="nav__link-container">
             <p class="nav__link-text">Journal</p>
           </div>
-        </a>
-        <img
+            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
+        </a>
+      
       </li>
         <li class="nav__list-item">
         <a class="nav__link" href="/characters/index.html">
           <div class="nav__link-container">
             <p class="nav__link-text">Characters</p>
           </div>
-        </a>
-        <img
+            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
+        </a>
+      
       </li>
       <li class="nav__list-item">
         <a class="nav__link" href="${pathPrefix}commissions.html">
           <div class="nav__link-container">
             <p class="nav__link-text">Commissions</p>
           </div>
-        </a>
-        <img
+            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
+        </a>
+      
       </li>
         <li class="nav__list-item">
         <a class="nav__link" href="${pathPrefix}support.html">
           <div class="nav__link-container">
             <p class="nav__link-text">Support Me</p>
           </div>
-        </a>
-        <img
+           <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
         />
+        </a>
+       
       </li>
     </ul>
   </nav>
