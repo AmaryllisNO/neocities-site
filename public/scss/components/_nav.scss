@@ -72,3 +72,18 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .nav {
+    &--mobile {
+      // display: block;
+      display: block;
+
+      &__list {
+        // flex-direction: row;
+        justify-content: right;
+        margin-left: auto;
+      }
+    }
+  }
+}

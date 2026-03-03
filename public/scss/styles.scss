@@ -189,6 +189,14 @@ footer {
   aside {
     display: none;
   }
+
+  .socials {
+    // optimize social media icons for mobile with flex wrap
+
+    &__list {
+      flex-wrap: wrap;
+    }
+  }
   // flex: 2;
 }
 
