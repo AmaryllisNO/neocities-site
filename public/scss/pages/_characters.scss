@@ -1,4 +1,23 @@
 .characters {
+  &__overview {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    &-item {
+      margin-right: 1em;
+      text-decoration: underline;
+      &-link {
+        all: unset;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
   &__list {
     display: flex;
     flex-direction: column; // means that every child element will be display on top of each other vertically
