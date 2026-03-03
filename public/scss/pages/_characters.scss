@@ -119,3 +119,144 @@
     }
   }
 }
+
+// Add at the end of your SCSS file
+@media screen and (max-width: 768px) {
+  .characters {
+    &__list {
+      &-item {
+        padding: 0.75em;
+
+        &-row {
+          flex-direction: column; // Stack columns vertically
+          gap: 1.5em;
+
+          &:first-child {
+            // The row containing the main content
+            flex-direction: column;
+          }
+        }
+
+        &-col {
+          width: 100%; // Full width on mobile
+
+          // Special styling for the portrait column
+          &:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+
+          // The table column
+          &:nth-child(2) {
+            width: 100%;
+          }
+
+          // The extra image column (for Amary & Vie)
+          &:nth-child(3) {
+            width: 100%;
+            margin-top: 0.5em;
+
+            .characters__list-image-wrapper {
+              height: auto;
+              max-height: 200px;
+            }
+          }
+        }
+
+        &-header {
+          text-align: center;
+
+          & h3 {
+            text-align: center !important;
+          }
+        }
+
+        &-table {
+          margin: 1em 0;
+          width: 100%;
+
+          & tr {
+            flex-direction: column; // Stack table rows vertically
+            gap: 0.25em;
+            margin-bottom: 0.75em;
+            padding-bottom: 0.75em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+
+          & th {
+            width: 100%;
+            padding-left: 0;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.7);
+          }
+
+          & td {
+            width: 100%;
+            padding-left: 0.5em;
+          }
+        }
+
+        &-quote {
+          font-size: 0.9em;
+          margin: 0.5em 0;
+        }
+      }
+
+      &-portrait {
+        &-wrapper {
+          width: 120px;
+          height: 120px;
+          margin: 0 auto;
+        }
+      }
+
+      &-image {
+        &-wrapper {
+          height: 150px;
+        }
+      }
+    }
+  }
+
+  // Adjust the attribution row
+  .characters__list-item-row:last-child {
+    p {
+      text-align: center;
+      font-size: 0.9em;
+      margin: 0.5em 0 0 0;
+    }
+  }
+}
+
+// Extra small devices
+@media screen and (max-width: 480px) {
+  .characters {
+    &__list {
+      &-item {
+        padding: 0.5em;
+
+        &-portrait-wrapper {
+          width: 100px;
+          height: 100px;
+        }
+
+        &-table {
+          & th,
+          & td {
+            font-size: 0.9em;
+          }
+        }
+
+        &-quote {
+          font-size: 0.85em;
+        }
+      }
+    }
+  }
+}
