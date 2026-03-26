@@ -44,7 +44,14 @@
     white-space: nowrap;
     overflow: hidden;
     margin: 0 auto;
-    animation: typing 3.5s steps(40, end);
+    user-select: none;
+    // animation: typing 3.5s steps(40, end);
+  }
+
+  &__attribution {
+    font-size: 0.95em;
+    color: #e6e6e6;
+    // margin-top: 0.5em;
   }
 
   &__text {

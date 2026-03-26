@@ -1,0 +1,141 @@
+// Absinthe Review Page Styling
+
+#intro {
+  padding: 1.5em;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.6;
+  color: rgb(219, 226, 235);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+  margin-bottom: 2em;
+
+  p {
+    margin: 0;
+  }
+}
+
+#absinthe-reviews {
+  padding: 1.5em;
+
+  h2 {
+    font-family: 'Carta Marina', serif;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    color: rgb(219, 226, 235);
+    text-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+  }
+}
+
+.review-entry {
+  margin-bottom: 3em;
+  padding: 1.5em;
+  background-color: rgba(25, 27, 40, 0.269);
+  border: white solid 1px;
+  backdrop-filter: blur(2px);
+
+  &__header {
+    margin-bottom: 1.5em;
+  }
+
+  &__name {
+    font-family: 'Carta Marina', serif;
+    font-size: 1.4em;
+    margin: 0 0 0.5em 0;
+    color: rgb(219, 226, 235);
+  }
+
+  &__meta {
+    display: flex;
+    gap: 2em;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.95em;
+    color: rgb(150, 150, 150);
+
+    span {
+      display: flex;
+      gap: 0.5em;
+
+      &::before {
+        content: '◆';
+        color: rgb(150, 150, 150);
+        opacity: 0.7;
+      }
+    }
+  }
+  &__info {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+    margin-bottom: 1.5em;
+
+    img {
+      flex-shrink: 0;
+      width: 100px;
+      height: 300px;
+      object-fit: contain;
+      object-position: left;
+      //   border: 2px solid rgba(150, 150, 150, 0.3);
+      //   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__table {
+    flex: 1;
+    width: 100%;
+    margin-bottom: 1.5em;
+    border-collapse: collapse;
+    font-family: 'Times New Roman', Times, serif;
+
+    th {
+      text-align: left;
+      padding: 0.75em;
+      background-color: rgba(100, 100, 100, 0.2);
+      color: rgb(200, 200, 200);
+      font-weight: bold;
+      border-bottom: 2px solid rgba(150, 150, 150, 0.3);
+      font-family: 'Carta Marina', serif;
+    }
+
+    td {
+      padding: 0.75em;
+      border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+      color: rgb(219, 226, 235);
+    }
+
+    tr:hover {
+      background-color: rgba(100, 100, 100, 0.1);
+      transition: background-color 0.2s ease;
+    }
+  }
+
+  &__notes {
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(216, 216, 216);
+    font-style: normal;
+    line-height: 1.6;
+    margin: 0;
+    margin-bottom: 1em;
+  }
+}
+
+#absinthe-ritual {
+  padding: 1.5em;
+  background-color: rgba(50, 50, 50, 0.2);
+  border-top: 1px solid rgba(150, 150, 150, 0.2);
+
+  h2 {
+    font-family: 'Carta Marina', serif;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    color: rgb(219, 226, 235);
+    text-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+  }
+
+  p {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    color: rgb(219, 226, 235);
+    margin: 0;
+  }
+}

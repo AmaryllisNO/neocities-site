@@ -4,3 +4,31 @@
 @mixin body-text {
   color: rgb(219, 226, 235);
 }
+
+// ANIMATIONS
+@keyframes shine {
+  0% {
+    left: -100%; /* Starts the gradient outside the image */
+  }
+  100% {
+    left: 100%; /* Moves the gradient to the right */
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(200%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
