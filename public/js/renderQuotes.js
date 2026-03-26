@@ -97,11 +97,25 @@ let isTyping = false;
 const TYPING_SPEED = 15; // milliseconds per character
 
 function getPageQuotes() {
-  const pathname = window.location.pathname;
+  let pathname = window.location.pathname;
+
+  // Normalize pathname - ensure it ends with .html for comparison
+  if (!pathname.endsWith('.html') && !pathname.endsWith('/')) {
+    pathname += '.html';
+  }
 
   // Try exact match first
   if (pageQuotes[pathname]) {
     return pageQuotes[pathname];
+  }
+
+  // Try without .html extension
+  const pathnameWithoutHtml = pathname.replace('.html', '');
+  for (const [path, quotes] of Object.entries(pageQuotes)) {
+    const pathWithoutHtml = path.replace('.html', '');
+    if (pathWithoutHtml === pathnameWithoutHtml) {
+      return quotes;
+    }
   }
 
   // Try matching by page name (handles root index differently)
@@ -109,7 +123,10 @@ function getPageQuotes() {
   const lastPart = pathParts[pathParts.length - 1] || 'index.html';
 
   for (const [path, quotes] of Object.entries(pageQuotes)) {
-    if (path.endsWith(lastPart)) {
+    if (
+      path.endsWith(lastPart) ||
+      path.endsWith(lastPart.replace('.html', ''))
+    ) {
       return quotes;
     }
   }
