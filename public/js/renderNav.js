@@ -112,7 +112,19 @@ const navigationHTML = (mode, pathPrefix) => {
           alt=""
         />
         </a>
-       
+      </li>
+        </li>
+        <li class="nav__list-item">
+        <a class="nav__link" href="${pathPrefix}misc/index.html">
+          <div class="nav__link-container">
+            <p class="nav__link-text">Misc.</p>
+          </div>
+           <img
+          class="nav__link-underline"
+          src="${pathPrefix}assets/images/Simple Underline Bevel.png"
+          alt=""
+        />
+        </a>
       </li>
     </ul>
   </nav>

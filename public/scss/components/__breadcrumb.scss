@@ -1,0 +1,30 @@
+@use '../_variables.scss';
+
+.breadcrumb {
+  //   padding: 10px 16px;
+  list-style: none;
+  //   background-color: #2352735b;
+
+  li {
+    display: inline;
+    font-size: 18px;
+
+    & + li {
+      &::before {
+        padding: 8px;
+        color: rgb(213, 221, 227);
+        content: '/\00a0';
+      }
+    }
+
+    a {
+      color: rgb(213, 221, 227);
+      text-decoration: none;
+
+      &:hover {
+        color: #01447e;
+        text-decoration: underline;
+      }
+    }
+  }
+}

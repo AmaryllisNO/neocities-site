@@ -5,6 +5,10 @@
   color: rgb(219, 226, 235);
 }
 
+@mixin link-colour {
+  color: rgb(230, 52, 108);
+}
+
 // ANIMATIONS
 @keyframes shine {
   0% {

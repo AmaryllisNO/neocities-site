@@ -11,7 +11,8 @@
 @use 'components/_title.scss';
 @use 'components/_hero.scss';
 @use 'components/_profile-card.scss';
-@use 'components/visitor-count';
+@use 'components/_visitor-count';
+@use 'components/_breadcrumb';
 
 // pages
 @use 'pages/_art.scss';
@@ -34,7 +35,7 @@
 main {
   color: white;
   border: 1px solid grey;
-  background-color: rgba(0, 0, 0, 0.388);
+  background-color: rgba(0, 0, 0, 0.388) !important;
   background-blend-mode: darken;
   flex-grow: 1;
   overflow: scroll;
