@@ -26,6 +26,85 @@
   }
 }
 
+.absinthe-index {
+  margin-top: 1.5em;
+  padding: 1em;
+  border: 1px solid #4a4a4a;
+  background: rgba(255, 255, 255, 0.03);
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75em;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__group {
+    list-style: none;
+  }
+
+  &__group-title {
+    display: inline-block;
+    margin-bottom: 0.35em;
+    padding: 0.12em 0.6em;
+    font-family: 'Carta Marina', serif;
+    font-size: 0.95em;
+
+    &--faux {
+      color: #ffd7d7;
+      background: rgba(170, 64, 64, 0.25);
+      border: 1px solid rgba(220, 120, 120, 0.5);
+    }
+
+    &--traditional {
+      color: #dafce2;
+      background: rgba(46, 119, 67, 0.25);
+      border: 1px solid rgba(102, 182, 123, 0.5);
+    }
+
+    &--pastis {
+      color: #fff0c9;
+      background: rgba(171, 124, 34, 0.25);
+      border: 1px solid rgba(219, 174, 91, 0.5);
+    }
+  }
+
+  &__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45em;
+  }
+
+  &__item {
+    padding: 0.4em 0.6em;
+    border-left: 3px solid #7dbf8b;
+    color: rgb(219, 226, 235);
+
+    a {
+      color: inherit;
+      display: inline-block;
+      padding: 0.12rem 0.1rem;
+    }
+
+    &--faux {
+      border-left-color: #c97575;
+    }
+
+    &--traditional {
+      border-left-color: #7dbf8b;
+    }
+
+    &--pastis {
+      border-left-color: #d6b265;
+    }
+  }
+}
+
 .review-entry {
   margin-bottom: 3em;
   padding: 1.5em;
@@ -46,6 +125,7 @@
 
   &__meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 2em;
     font-family: 'Times New Roman', Times, serif;
     font-size: 0.95em;
@@ -73,7 +153,8 @@
       width: 100px;
       height: 300px;
       object-fit: contain;
-      object-position: left;
+      object-position: center;
+      display: block;
       //   border: 2px solid rgba(150, 150, 150, 0.3);
       //   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
@@ -118,32 +199,70 @@
   }
 }
 
-#absinthe-ritual {
-  padding: 1.5em;
-  background-color: rgba(50, 50, 50, 0.2);
-  border-top: 1px solid rgba(150, 150, 150, 0.2);
+.page-absinthe {
+  overflow-x: hidden;
 
-  h2 {
-    font-family: 'Carta Marina', serif;
-    font-size: 1.8em;
-    margin-top: 0;
-    margin-bottom: 1em;
-    color: rgb(219, 226, 235);
-    text-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+  main {
+    overflow-x: hidden;
   }
 
-  p {
-    font-family: 'Times New Roman', Times, serif;
-    line-height: 1.6;
-    color: rgb(219, 226, 235);
-    margin: 0;
+  .review-entry__notes,
+  .absinthe-index__item,
+  .review-entry__meta span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 
-// ...existing code...
-
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+  .page-absinthe .body-container {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .page-absinthe main {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  .page-absinthe .aside {
+    display: none;
+  }
+
+  .page-absinthe .breadcrumb li a {
+    display: inline-block;
+    min-height: 44px;
+    padding: 0.45rem 0.55rem;
+    line-height: 1.15;
+  }
+
+  .page-absinthe .absinthe-index__item a {
+    display: block;
+    // min-height: 44px;
+    // padding: 0.55rem 0.35rem;
+    margin: 0;
+    // border-radius: 4px;
+  }
+
+  .page-absinthe section {
+    margin: 0.5em;
+    padding: 0.7em;
+  }
+
+  .page-absinthe #intro,
+  .page-absinthe #absinthe-reviews {
+    padding: 1em;
+  }
+
+  .page-absinthe .review-entry {
+    padding: 1em;
+    margin-bottom: 1.5em;
+  }
+
   .body-container {
     flex-direction: column;
   }
@@ -164,12 +283,19 @@
 
   .review-entry__info {
     flex-direction: column;
+    gap: 1rem;
   }
 
   .review-entry__info img {
+    width: clamp(140px, 50vw, 220px);
+    height: clamp(220px, 60vw, 320px);
     max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+    object-fit: contain;
+    object-position: center;
+
+    border: 1px solid rgba(180, 190, 210, 0.28);
+    margin: 0 auto 0.9rem;
+    mix-blend-mode: multiply;
   }
 
   .review-entry__table {
@@ -179,8 +305,31 @@
 
   .review-entry__table th,
   .review-entry__table td {
-    padding: 0.5rem;
+    padding: 0.4rem;
+    font-size: 0.85rem;
     word-break: break-word;
+  }
+
+  .page-absinthe .review-entry__table {
+    border: 0;
+  }
+
+  .page-absinthe .review-entry__table tr {
+    display: block;
+    margin-bottom: 0.45rem;
+    border: 1px solid rgba(150, 150, 150, 0.2);
+  }
+
+  .page-absinthe .review-entry__table th,
+  .page-absinthe .review-entry__table td {
+    display: block;
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.18);
+  }
+
+  .page-absinthe .review-entry__table td:last-child {
+    border-bottom: 0;
   }
 
   .breadcrumb {
@@ -198,12 +347,31 @@
   }
 
   .review-entry__meta {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
   .review-entry__meta span {
     display: block;
+    font-size: 0.9rem;
+  }
+
+  .absinthe-index {
+    padding: 0.85em;
+
+    &__list {
+      gap: 0.65em;
+    }
+
+    &__group-title {
+      font-size: 0.9rem;
+    }
+
+    &__item {
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
   }
 
   footer {
@@ -213,34 +381,5 @@
   .socials__list {
     flex-direction: column;
     gap: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  main {
-    padding: 0.75rem;
-  }
-
-  .title {
-    font-size: 1.25rem;
-  }
-
-  .review-entry__header h3 {
-    font-size: 1.1rem;
-  }
-
-  .review-entry__table th,
-  .review-entry__table td {
-    padding: 0.25rem;
-    font-size: 0.85rem;
-  }
-
-  .review-entry__notes {
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  p {
-    margin-top: 0.75rem;
   }
 }
