@@ -1,6 +1,6 @@
 // Absinthe Review Page Styling
 
-#intro {
+.absinthe-intro {
   padding: 1.5em;
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.6;
@@ -253,7 +253,6 @@
     padding: 0.7em;
   }
 
-  .page-absinthe #intro,
   .page-absinthe #absinthe-reviews {
     padding: 1em;
   }

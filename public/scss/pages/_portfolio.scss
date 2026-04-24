@@ -1,0 +1,88 @@
+.page-portfolio {
+  section {
+    margin: 1em;
+    padding: 1em;
+  }
+
+  a {
+    color: #e6edf7;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+
+    &:hover {
+      border-color: #2caafe;
+    }
+  }
+
+  .portfolio-language-switcher {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+
+    button {
+      border: 1px solid #707783;
+      background: rgba(22, 28, 39, 0.65);
+      color: #e6edf7;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+
+      &[aria-pressed='true'] {
+        border-color: #2caafe;
+        color: #ffffff;
+      }
+
+      &:hover {
+        border-color: #9bb4cc;
+      }
+    }
+  }
+
+  .portfolio-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+
+    li {
+      a {
+        color: #e6edf7;
+        font-size: 0.95rem;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s;
+        border: 1px solid whitesmoke;
+        margin: 1px;
+        padding: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        i {
+          color: #9ec9ec;
+          font-size: 0.9rem;
+        }
+
+        &:hover {
+          border-color: #2caafe;
+        }
+      }
+    }
+  }
+  .portfolio-skills-table {
+    width: 100%;
+    margin-top: 1em;
+  }
+
+  .portfolio-footer-bevel {
+    display: flex;
+    justify-content: center;
+
+    &__image {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
