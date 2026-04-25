@@ -21,15 +21,14 @@
       featured_title: 'Featured Work',
       featured_intro:
         'Add your strongest case studies here. Keep each entry outcome-focused with links to visuals, repositories or live builds.',
-      project_1_title: 'Project 01 - Cross-Disciplinary Product Concept',
-      project_1_role:
-        '<strong>Role:</strong> Visual Design, Frontend Implementation, Product Direction',
+      project_1_title: 'Alfa Bergsprengning Logo',
+      project_1_role: '<strong>Role:</strong> Visual Design, Logo Design',
       project_1_desc:
         'Replace this with a concise summary of problem, approach, and measurable result.',
       project_1_link_1: 'Live Demo',
       project_1_link_2: 'Case Study',
       project_1_link_3: 'Source Code',
-      project_2_title: 'Project 02 - Brand + Website System',
+      project_2_title: 'Grafix - Website for Artist',
       project_2_role:
         '<strong>Role:</strong> Graphic Identity, Web Design System, Developer Handoff',
       project_2_desc:
@@ -111,17 +110,14 @@
       featured_title: 'Utvalgte prosjekter',
       featured_intro:
         'Legg inn de sterkeste casene dine her. Hold hvert prosjekt resultatorientert med lenker til visuelle leveranser, repositories eller live versjoner.',
-      project_1_title: 'Prosjekt 01 - Tverrfaglig produktkonsept',
-      project_1_role:
-        '<strong>Rolle:</strong> Visuell design, frontend-implementering, produktretning',
+      project_1_title: 'Alfa Bergsprengning Logo',
+      project_1_role: '<strong>Rolle:</strong> Visuell design, logodesign',
       project_1_desc:
         'Erstatt dette med en kort oppsummering av problem, tilnaerming og malbart resultat.',
-      project_1_link_1: 'Live demo',
-      project_1_link_2: 'Case study',
-      project_1_link_3: 'Kildekode',
-      project_2_title: 'Prosjekt 02 - Brand- og nettsidesystem',
+
+      project_2_title: 'Grafix - Nettside til musikkartist',
       project_2_role:
-        '<strong>Rolle:</strong> Visuell identitet, webdesignsystem, utviklerhandoff',
+        '<strong>Rolle:</strong> Visuell identitet, webdesignsystem, utvikling',
       project_2_desc:
         'Erstatt dette med prosjektets rammer, visuelle valg og detaljer fra implementeringen.',
       project_2_link_1: 'Visuell gjennomgang',

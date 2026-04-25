@@ -17,6 +17,8 @@
     align-items: left;
     flex-direction: column;
 
+    // target the last item and move its text to the right
+
     &-item {
       // font-size: 1.2em;
       margin-bottom: -0.1em;
@@ -42,9 +44,14 @@
   &__link {
     display: inline-block;
     max-height: 30px;
-    // outline: 1px solid rgb(29, 131, 152);
 
-    &-container {
+    &:nth-child(8) {
+      display: flex;
+      outline: 1px solid red;
+
+      a {
+        margin-left: 1em;
+      }
     }
 
     &-text {
@@ -52,11 +59,6 @@
       margin-left: 0.7em;
       letter-spacing: 2px;
       color: white;
-
-      /*   &:nth-child(1) {
-        margin-top: 0.5em;
-        text-align: right;
-      } */
     }
 
     &-underline {
@@ -66,7 +68,6 @@
       // max-height: 20px;
       transform: scaleX(-1);
       width: 170px;
-
       position: relative;
       bottom: 30px;
     }
