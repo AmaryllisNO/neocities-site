@@ -25,14 +25,13 @@
                 <li><a href="#" data-i18n="crumb_portfolio">Portfolio</a></li>
             </ul>
 
+
+            <h1 class="title" style="margin-top: 0" data-i18n="page_title">Portfolio</h1>
             <section id="language-switcher" class="portfolio-language-switcher" aria-label="Language switcher">
                 <button type="button" data-lang="en" aria-pressed="true">English</button>
                 <button type="button" data-lang="no" aria-pressed="false">Norsk</button>
             </section>
-
-            <h1 class="title" data-i18n="page_title">Portfolio</h1>
-
-            <section id="intro">
+            <!--     <section id="intro" class="portfolio-section portfolio-section--intro">
                 <p data-i18n="intro_p1">
                     This page is the foundation for a combined creative and technical portfolio. It is structured to
                     showcase visual craft, product thinking and engineering execution in one place.
@@ -41,10 +40,10 @@
                     Core focus areas: <strong>Graphic Design</strong>, <strong>Web Design</strong> and
                     <strong>Software Development</strong>.
                 </p>
-            </section>
+            </section> -->
 
-            <section id="portfolio-links">
-                <h3 data-i18n="quick_nav_title">Quick Navigation</h3>
+            <section id="portfolio-links" class="portfolio-section portfolio-section--quick-nav">
+                <h3 class="portfolio-section__title" data-i18n="quick_nav_title">Quick Navigation</h3>
                 <ul class="portfolio-links">
                     <li class="portfolio-links__item">
                         <a href="#featured-work">
@@ -97,30 +96,59 @@
                 </ul>
             </section>
 
-            <section id="featured-work">
-                <h3 style="font-size: x-large;" data-i18n="featured_title">Featured Work</h3>
+            <section id="featured-work" class="portfolio-section portfolio-section--featured">
+                <h3 class="portfolio-section__title portfolio-section__title--featured" data-i18n="featured_title">
+                    Featured Work</h3>
                 <!--                 <p data-i18n="featured_intro">
                     Add your strongest case studies here. Keep each entry outcome-focused with links to visuals,
                     repositories or live builds.
                 </p> -->
 
-                <article>
-                    <h3 style="font-family: 'Carta Marina', sans-serif" ; data-i18n="project_1_title">Alfa
+                <article class="portfolio-project-card">
+                    <h3 class="portfolio-project-card__title" data-i18n="project_1_title">Alfa
                         Bergsprengning Logo</h3>
-                    <p data-i18n="project_1_role"><strong>Role:</strong> Visual Design, Logo Design
+                    <p class="portfolio-project-card__role" data-i18n="project_1_role"><strong>Role:</strong> Visual
+                        Design, Logo Design
                     </p>
-                    <img style="max-width: 400px;" src="../assets/images/work-portfolio/Alfa Bergsprengning kvit.png"
-                        alt="Alfa Bergsprengning kvit logo" class="featured-image" />
-                    <img style="max-width: 400px;" src="../assets/images/work-portfolio/Alfa Bergsprengning.png"
-                        alt="Alfa Bergsprengning logo" class="featured-image" />
-                    <img style="max-width: 400px;" src="../assets/images/work-portfolio/alfabergsprengning kjøretøy.png"
-                        alt="">
-                    <img style="max-width: 400px;" src="../assets/images/work-portfolio/rockblaster.png" alt="">
+                    <div class="portfolio-project-card__media portfolio-project-card__media--contained">
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/Alfa Bergsprengning kvit.png"
+                                alt="Alfa Bergsprengning logo on dark background" class="featured-image" />
+                            <figcaption data-i18n="project_1_gallery_caption_1">Primary logo version on dark
+                                background.</figcaption>
+                        </figure>
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/Alfa Bergsprengning.png"
+                                alt="Alfa Bergsprengning logo on light background" class="featured-image" />
+                            <figcaption data-i18n="project_1_gallery_caption_2">Primary logo version on light
+                                background.</figcaption>
+                        </figure>
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/alfabergsprengning kjøretøy.png"
+                                alt="Alfa Bergsprengning vehicle branding application">
+                            <figcaption data-i18n="project_1_gallery_caption_3">Vehicle branding application to test
+                                visibility at scale.</figcaption>
+                        </figure>
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/rockblaster.png"
+                                alt="Rockblaster campaign-style brand application">
+                            <figcaption data-i18n="project_1_gallery_caption_4">Campaign-style brand application with
+                                strong visual impact.</figcaption>
+                        </figure>
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/ab logo iterations.png"
+                                alt="Alfa Bergsprengning logo concept iterations">
+                            <figcaption data-i18n="project_1_gallery_caption_5">Concept iterations showing the
+                                development process.</figcaption>
+                        </figure>
+                    </div>
 
 
-                    <p data-i18n="project_1_desc">
-
+                    <p class="portfolio-project-card__description" data-i18n="project_1_desc">
                     </p>
+                    <p class="portfolio-project-card__description" data-i18n="project_1_desc2">
+                    </p>
+
                     <!--    <p>
                         <a href="#" data-i18n="project_1_link_1">Live Demo</a> |
                         <a href="#" data-i18n="project_1_link_2">Case Study</a> |
@@ -128,15 +156,37 @@
                     </p> -->
                 </article>
 
-                <article>
-                    <h3 style="font-family: 'Carta Marina', sans-serif" ; data-i18n="project_2_title">Grafix - Website
+                <article class="portfolio-project-card">
+                    <h3 class="portfolio-project-card__title" data-i18n="project_2_title">Grafix - Website
                         for Artist
                     </h3>
-                    <p data-i18n="project_2_role"><strong>Role:</strong> Graphic Identity, Web Design System, Developer
+                    <p class="portfolio-project-card__role" data-i18n="project_2_role"><strong>Role:</strong> Graphic
+                        Identity, Web Design System, Developer
                         Handoff</p>
-                    <img style="max-width: 800px;" src="../assets/images/work-portfolio/grafix-website.png" alt="">
-                    <p data-i18n="project_2_desc">
-                        Replace this with project constraints, visual language choices, and implementation details.
+                    <div class="portfolio-project-card__media ">
+                        <a href="https://grafixmusic.co.uk/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Open grafixmusic.co.uk in a new tab">
+                            <img src="../assets/images/work-portfolio/grafix-website.png"
+                                alt="Grafix website design showcase">
+                        </a>
+                    </div>
+                    <p class="portfolio-project-card__description" data-i18n="project_2_desc">
+                        In 2021, I collaborated with Grafix (Josh Jackson), a UK-based drum and bass producer and DJ,
+                        to develop a new visual identity and website design.
+                    </p>
+                    <p class="portfolio-project-card__description" data-i18n="project_2_desc2">
+                        The goal was to create a cohesive brand system for digital platforms and merchandise, and a
+                        website that clearly presented music releases, tour dates, and news updates.
+                    </p>
+                    <p class="portfolio-project-card__links">
+                        <a class="portfolio-project-card__link-button" href="https://grafixmusic.co.uk/" target="_blank"
+                            rel="noopener noreferrer" aria-label="Open grafixmusic.co.uk in a new tab">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            <span data-i18n="project_2_visit_site">Visit Website</span>
+                        </a>
+                        <a class="portfolio-project-card__link-url" href="https://grafixmusic.co.uk/" target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Open grafixmusic.co.uk in a new tab">grafixmusic.co.uk</a>
                     </p>
                     <!--     <p>
                         <a href="#" data-i18n="project_2_link_1">Visual Breakdown</a> |
@@ -146,13 +196,49 @@
                 </article>
             </section>
 
-            <section id="graphic-design">
-                <h3 data-i18n="graphic_title">Graphic Design</h3>
+            <section id="graphic-design" class="portfolio-section portfolio-section--discipline">
+                <h3 class="portfolio-section__title" data-i18n="graphic_title">Graphic Design</h3>
                 <p data-i18n="graphic_intro">
-                    Highlight album art, posters, key visuals, logo systems, and styleframes. Include intent,
-                    constraints and design rationale.
+                    Album art, posters, key visuals, logo systems, and styleframes.
                 </p>
 
+                <div class="portfolio-project-card__media">
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/bafkreigsgyi7qggvqgipnxxdasgyphutapq3vwj34ipg3eh7foevxv7spy.webp"
+                            alt="Album cover artwork concept" class="featured-image" />
+                        <figcaption data-i18n="graphic_gallery_caption_1">Cover art concept with high-contrast visual
+                            treatment.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/rameses1.png" alt="Rameses B album artwork" />
+                        <figcaption data-i18n="graphic_gallery_caption_2">Album artwork for Rameses B with atmospheric
+                            color palette.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/c.sundstgate - kvit.png"
+                            alt="C. Sundtsgate logo on dark background" />
+                        <figcaption data-i18n="graphic_gallery_caption_3">Primary logo version for C. Sundtsgate on
+                            dark background.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/c.sundtsgate 19 - IM Fell English.png"
+                            alt="C. Sundtsgate typography and branding composition" />
+                        <figcaption data-i18n="graphic_gallery_caption_4">Typography and branding composition for C.
+                            Sundtsgate 19.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/Skybreak x CloudNone.png"
+                            alt="Skybreak x CloudNone collaborative release artwork" />
+                        <figcaption data-i18n="graphic_gallery_caption_5">Release artwork for Skybreak x CloudNone
+                            collaboration.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/null letters logo.png"
+                            alt="Null Letters logo exploration" />
+                        <figcaption data-i18n="graphic_gallery_caption_6">Logo exploration for the Null Letters visual
+                            identity.</figcaption>
+                    </figure>
+                </div>
                 <!--   <ul>
                     <li data-i18n="graphic_item_1">Brand identities and logomarks</li>
                     <li data-i18n="graphic_item_2">Campaign and event visuals</li>
@@ -161,31 +247,103 @@
                 </ul> -->
             </section>
 
-            <section id="web-design">
-                <h3 data-i18n="web_title">Web Design</h3>
-                <p data-i18n="web_intro">
+            <section id="web-design" class="portfolio-section portfolio-section--discipline">
+                <h3 class="portfolio-section__title" data-i18n="web_title">Web Design</h3>
+                <!--  <p data-i18n="web_intro">
                     Use this section for UX flows, component libraries, responsive layouts and accessibility decisions.
-                </p>
-                <ul>
+                </p> -->
+
+                <div class="portfolio-project-card__media">
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/web-design/ergsdf.png"
+                            alt="Landing page concept with prominent call-to-action" />
+                        <figcaption data-i18n="web_gallery_caption_1">Landing page concept with strong call-to-action
+                            hierarchy.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/web-design/erhasdf.png"
+                            alt="Responsive layout variant with adjusted section spacing" />
+                        <figcaption data-i18n="web_gallery_caption_2">Responsive variant with adjusted spacing,
+                            structure, and readability.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/web-design/Layer 6.png"
+                            alt="Typography and visual direction exploration" />
+                        <figcaption data-i18n="web_gallery_caption_3">Typography and visual direction exploration for
+                            brand consistency.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/web-design/weddfawgr.png"
+                            alt="Component-based page section with clear content blocks" />
+                        <figcaption data-i18n="web_gallery_caption_4">Component-based section design with clear
+                            content grouping.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/web-design/plkbjg.png"
+                            alt="Promotional page mockup emphasizing visual rhythm" />
+                        <figcaption data-i18n="web_gallery_caption_5">Promotional page mockup focused on visual
+                            rhythm and balance.</figcaption>
+                    </figure>
+                    <figure class="portfolio-media-figure">
+                        <img src="../assets/images/work-portfolio/web-design/Layer 3.png"
+                            alt="Content-forward layout with supporting call-to-action" />
+                        <figcaption data-i18n="web_gallery_caption_6">Content-forward layout with supporting
+                            call-to-action areas.</figcaption>
+                    </figure>
+                </div>
+                <!--    <ul>
                     <li data-i18n="web_item_1">Information architecture and content structure</li>
                     <li data-i18n="web_item_2">Wireframes, prototypes and UI systems</li>
                     <li data-i18n="web_item_3">Responsive design for desktop and mobile</li>
                     <li data-i18n="web_item_4">Design-to-code implementation notes</li>
-                </ul>
+                </ul> -->
             </section>
 
-            <section id="software-development">
-                <h3 data-i18n="software_title">Software Development</h3>
-                <p data-i18n="software_intro">
+            <section id="software-development" class="portfolio-section portfolio-section--discipline">
+                <h3 class="portfolio-section__title" data-i18n="software_title">Software Development</h3>
+                <!--  <p data-i18n="software_intro">
                     Present engineering work that supports product goals. Emphasize architecture, maintainability and
                     outcomes.
-                </p>
-                <ul>
-                    <li data-i18n="software_item_1">Frontend applications and reusable components</li>
-                    <li data-i18n="software_item_2">API integrations and data handling</li>
-                    <li data-i18n="software_item_3">Performance and accessibility improvements</li>
-                    <li data-i18n="software_item_4">Tooling, testing and deployment workflows</li>
-                </ul>
+                </p> -->
+
+                <article class="portfolio-project-card">
+                    <h4 class="portfolio-project-card__title" data-i18n="software_ibl_title">iBluu Mobile App</h4>
+                    <p class="portfolio-project-card__role" data-i18n="software_ibl_role"><strong>Role:</strong>
+                        Product Design, Frontend Development, Platform Structure</p>
+                    <p class="portfolio-project-card__description" data-i18n="software_ibl_desc">
+                        iBluu is an administrative IT platform for products and services. The mobile app focuses on
+                        giving teams a clear overview of listings, status, and service data in one place.
+                    </p>
+
+                    <p class="portfolio-project-card__description" data-i18n="software_ibl_desc_2">
+                        The app is built with React Native via Expo and designed to support both iOS and Android from
+                        a shared codebase while handling complex service and product data.
+                    </p>
+                    <!--   <ul>
+                        <li data-i18n="software_ibl_item_1">Structured product and service records with fast search and
+                            filtering.</li>
+                        <li data-i18n="software_ibl_item_2">Admin workflows for creating, editing, and maintaining
+                            platform entries.</li>
+                        <li data-i18n="software_ibl_item_3">Mobile-first UI patterns designed for quick operational
+                            tasks.</li>
+                    </ul> -->
+
+                    <div class="portfolio-project-card__media">
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/software-dev/ibluu.png"
+                                alt="iBluu mobile app interface overview" />
+                            <figcaption data-i18n="software_ibl_gallery_caption_1">iBluu mobile interface overview for
+                                product and service administration.</figcaption>
+                        </figure>
+                        <figure class="portfolio-media-figure">
+                            <img src="../assets/images/work-portfolio/software-dev/bluu as.png"
+                                alt="iBluu admin platform view with product and service data" />
+                            <figcaption data-i18n="software_ibl_gallery_caption_2">Admin platform view for managing
+                                service requests and operational data.</figcaption>
+                        </figure>
+                    </div>
+                </article>
+
             </section>
 
             <!--   <section id="process">
@@ -199,26 +357,24 @@
                 </ol>
             </section> -->
 
-            <section id="skills-and-tools">
-                <h3 data-i18n="skills_title">Skills &amp; Tools</h3>
+            <section id="skills-and-tools" class="portfolio-section portfolio-section--skills">
+                <h3 class="portfolio-section__title" data-i18n="skills_title">Skills &amp; Tools</h3>
                 <table class="portfolio-skills-table">
                     <tr>
                         <th data-i18n="skills_design_th">Design</th>
-                        <td data-i18n="skills_design_td">Figma, Adobe Photoshop, Adobe Illustrator, typography, color
-                            systems</td>
+                        <td data-i18n="skills_design_td">Figma, Adobe Photoshop, Adobe Illustrator</td>
                     </tr>
                     <tr>
                         <th data-i18n="skills_frontend_th">Frontend</th>
-                        <td data-i18n="skills_frontend_td">HTML, CSS/SCSS, JavaScript, responsive UI, accessibility</td>
+                        <td data-i18n="skills_frontend_td">HTML, CSS/SCSS, JavaScript/Typescript, responsive UI,
+                            React/React, AI engineering
+                            Native, accessibility</td>
                     </tr>
                     <tr>
                         <th data-i18n="skills_dev_th">Development</th>
                         <td data-i18n="skills_dev_td">Component-based architecture, APIs, Git workflows</td>
                     </tr>
-                    <tr>
-                        <th data-i18n="skills_collab_th">Collaboration</th>
-                        <td data-i18n="skills_collab_td">Client communication, briefs, handoff documentation</td>
-                    </tr>
+
                 </table>
             </section>
 
@@ -264,7 +420,7 @@
             <div class="copyright" id="copyright"></div>
         </ul>
         <div class="portfolio-footer-bevel">
-            <img class="portfolio-footer-bevel__image" src="../assets/images/horizontal bevel.png"
+            <img style="max-width: 100%; height: auto;" src="../assets/images/horizontal bevel.png"
                 alt="Horizontal Bevel" srcset="" />
         </div>
     </footer>

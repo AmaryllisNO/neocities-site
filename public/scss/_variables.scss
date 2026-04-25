@@ -3,6 +3,7 @@
 // mixins
 @mixin body-text {
   color: rgb(219, 226, 235);
+  font-size: 18px;
 }
 
 @mixin link-colour {
