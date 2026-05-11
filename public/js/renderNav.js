@@ -101,6 +101,7 @@ const navigationHTML = (mode, pathPrefix) => {
         </a>
       
       </li>
+   
         <li class="nav__list-item">
         <a class="nav__link" href="${pathPrefix}support.html">
           <div class="nav__link-container">
@@ -149,8 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const mobileNavElement = document.getElementById('copyright');
-  if (copyright) {
-    copyright.innerHTML = `© ${new Date().getFullYear()} Amaryllis `;
+  const copyrightElement = document.getElementById('copyright');
+  if (copyrightElement) {
+    copyrightElement.innerHTML = `© ${new Date().getFullYear()} Amaryllis `;
   }
 });
+
+/*   <li class="nav__list-item">
+        <a class="nav__link" href="${pathPrefix}shop.html">
+          <div class="nav__link-container">
+            <p class="nav__link-text">Shop</p>
+          </div>
+            <img
+          class="nav__link-underline"
+          src="${pathPrefix}assets/images/Simple Underline Bevel.png"
+          alt=""
+        />
+        </a>
+      </li> */

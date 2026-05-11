@@ -1,0 +1,232 @@
+.page-shop {
+  .shop-section,
+  .shop-order {
+    border: 1px solid rgba(180, 205, 238, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .shop-intro {
+    p {
+      max-width: 72ch;
+      margin: 0;
+    }
+  }
+
+  .shop-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .shop-info-card {
+    border: 1px solid rgba(180, 205, 238, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5em;
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      font-family: 'Carta Marina', serif;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .shop-section {
+    min-height: 180px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .shop-loading {
+    color: #dbe2eb;
+    font-style: italic;
+  }
+
+  .shop-product {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1rem;
+    border: 1px solid rgba(180, 205, 238, 0.35);
+    padding: 0.85rem;
+
+    &__image {
+      width: 130px;
+      height: 160px;
+      object-fit: cover;
+      border: 1px solid rgba(180, 205, 238, 0.35);
+    }
+
+    &__title {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.3rem;
+      font-family: 'Carta Marina', serif;
+    }
+
+    &__meta {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    &__price {
+      margin-top: 0.5rem;
+      margin-bottom: 0.7rem;
+      font-size: 1.05rem;
+      color: #e8f0f6;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    &__button {
+      border: 1px solid rgba(180, 205, 238, 0.6);
+      color: #eef3f8;
+      background: rgba(29, 46, 69, 0.6);
+      padding: 0.45rem 0.65rem;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(60, 84, 117, 0.7);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+    }
+
+    &--sold {
+      border-color: rgba(255, 170, 170, 0.4);
+    }
+
+    &__sold-tag {
+      color: #ffd7d7;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  .shop-order {
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
+      font-family: 'Carta Marina', serif;
+    }
+
+    &__description {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    &__meta {
+      padding: 0.65rem;
+      margin-bottom: 0.9rem;
+      border: 1px solid rgba(180, 205, 238, 0.35);
+      background: rgba(0, 0, 0, 0.15);
+      min-height: 54px;
+    }
+
+    &__form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      margin-bottom: 0.9rem;
+    }
+
+    label {
+      font-size: 0.95rem;
+      color: #dce6ee;
+    }
+
+    input,
+    textarea {
+      background: rgba(0, 0, 0, 0.25);
+      color: #f5f9fc;
+      border: 1px solid rgba(180, 205, 238, 0.4);
+      padding: 0.55rem;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1rem;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.65rem;
+    }
+
+    button {
+      border: 1px solid rgba(180, 205, 238, 0.6);
+      color: #eef3f8;
+      background: rgba(29, 46, 69, 0.6);
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(60, 84, 117, 0.7);
+      }
+    }
+
+    &__status {
+      margin-bottom: 0;
+      color: #d3e0eb;
+      min-height: 1.25rem;
+    }
+  }
+
+  .shop-inline-list {
+    margin: 0;
+    padding-left: 1.2rem;
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .shop-muted {
+    color: #b8c5d2;
+    font-size: 0.95rem;
+  }
+
+  .shop-empty {
+    margin: 0;
+    color: #d3e0eb;
+  }
+
+  .shop-note {
+    color: #ffd7d7;
+    margin-top: 0.45rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .page-shop {
+    .shop-section {
+      grid-template-columns: 1fr;
+    }
+
+    .shop-info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .shop-product {
+      grid-template-columns: 1fr;
+
+      &__image {
+        width: 100%;
+        height: auto;
+        max-height: 340px;
+      }
+    }
+  }
+}

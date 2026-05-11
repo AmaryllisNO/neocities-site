@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amaryllis | Shop</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="shortcut icon" href="./assets/images/03052022.jpg" type="image/x-icon">
+    <link href="./fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="./fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="./fontawesome/css/brands.min.css" rel="stylesheet">
+    <meta property="og:description" content="Original physical oil paintings for sale." />
+    <meta property="og:image" content="https://amaryllisno.neocities.org/assets/images/03052022.png" />
+</head>
+
+<body class="page-shop">
+    <div class="body-container">
+        <aside class="aside" id="aside"></aside>
+        <main>
+            <ul class="breadcrumb">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+            </ul>
+
+            <h1 class="title">Oil Painting Shop</h1>
+
+            <section class="shop-intro">
+                <p>
+                    Original physical oil paintings by Amaryllis. Each piece is one of one, shipped with careful
+                    packaging and
+                    tracked delivery.
+                </p>
+            </section>
+
+            <section class="shop-info-grid" aria-label="Shop policies">
+                <article class="shop-info-card">
+                    <h2>Shipping</h2>
+                    <p>Worldwide shipping available. Shipping quote is provided manually before final confirmation.</p>
+                </article>
+                <article class="shop-info-card">
+                    <h2>Authenticity</h2>
+                    <p>Every painting is hand-made and shipped as a physical original with signed certificate when
+                        available.</p>
+                </article>
+                <article class="shop-info-card">
+                    <h2>Payments</h2>
+                    <p>Orders are handled directly with you after inquiry. You can accept bank transfer, invoice, or
+                        local methods.</p>
+                </article>
+            </section>
+
+            <section class="shop-section" id="shop-products" aria-live="polite">
+                <p class="shop-loading">Loading available paintings...</p>
+            </section>
+
+            <section class="shop-order" aria-label="Order inquiry">
+                <h2>Order Inquiry</h2>
+                <p class="shop-order__description">Select paintings above, fill in your details, then create a prefilled
+                    email draft.</p>
+
+                <div class="shop-order__meta" id="shop-order-meta"></div>
+
+                <div class="shop-order__form">
+                    <label for="order-name">Your name</label>
+                    <input id="order-name" name="order-name" type="text" autocomplete="name" required>
+
+                    <label for="order-email">Your email</label>
+                    <input id="order-email" name="order-email" type="email" autocomplete="email" required>
+
+                    <label for="order-country">Shipping country</label>
+                    <input id="order-country" name="order-country" type="text" autocomplete="country-name" required>
+
+                    <label for="order-notes">Notes (optional)</label>
+                    <textarea id="order-notes" name="order-notes" rows="4"
+                        placeholder="Frame preferences, delivery notes, etc."></textarea>
+                </div>
+
+                <div class="shop-order__actions">
+                    <button id="open-order-email" type="button">Open Email Draft</button>
+                    <button id="copy-order-summary" type="button">Copy Order Summary</button>
+                    <button id="clear-order-selection" type="button">Clear Selection</button>
+                </div>
+
+                <p class="shop-order__status" id="shop-order-status"></p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div id="mobile-nav"></div>
+        <ul class="socials socials__list">
+            <li class="socials__list-item">
+                <a href="https://bsky.app/profile/amaryllis.no"><i class="fa-brands fa-bluesky"></i> Bluesky</a>
+            </li>
+            <li class="socials__list-item">
+                <a href="https://www.instagram.com/amaryllis_no/"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            </li>
+            <li class="socials__list-item">
+                <a href="https://www.twitter.com/amaryllis_no/"><i class="fa-brands fa-twitter"></i> Twitter</a>
+            </li>
+            <li class="socials__list-item">
+                <a href="https://sharper-fangs.null00.no/">null.no | Sharper Fangs</a>
+            </li>
+            <div class="copyright" id="copyright"></div>
+        </ul>
+        <div style="display: flex; justify-content: center">
+            <img style="max-width: 100%; height: auto" src="/assets/images/horizontal bevel.png" alt="Horizontal Bevel"
+                srcset="" />
+        </div>
+    </footer>
+
+    <script type="module" src="./js/renderNav.js"></script>
+    <script type="module" src="./js/renderManualShop.js"></script>
+</body>
+
+</html>
