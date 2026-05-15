@@ -243,7 +243,8 @@
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      background-image: linear-gradient(45deg, transparent 50%, #dce6ee 50%),
+      background-image:
+        linear-gradient(45deg, transparent 50%, #dce6ee 50%),
         linear-gradient(135deg, #dce6ee 50%, transparent 50%);
       background-position:
         calc(100% - 16px) calc(50% - 2px),

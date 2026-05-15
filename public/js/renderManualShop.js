@@ -376,10 +376,8 @@ const initManualShop = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (
-    window.location.pathname.endsWith('/shop.html') ||
-    window.location.pathname === '/shop.html'
-  ) {
+  // Initialize whenever the shop root exists, regardless of URL rewrite style.
+  if (document.getElementById(elementIds.products)) {
     initManualShop();
   }
 });
