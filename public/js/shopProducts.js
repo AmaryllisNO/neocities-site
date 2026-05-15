@@ -1,5 +1,5 @@
 export const shopConfig = {
-  contactEmail: 'inquiries@amaryllisno.com',
+  contactEmail: 'inquiries@amaryllis.no',
   currencySymbol: '$',
   paymentMethods:
     'Bank transfer, PayPal invoice, or local payment methods by agreement.',
@@ -28,6 +28,19 @@ export const shopProducts = [
     status: 'available',
   },
   {
+    id: 'oil-005',
+    title: '"Vie"',
+    year: 2026,
+    price: 350,
+    size: '21,0 x 29,7 cm (A4)',
+    medium: 'Oil on canvas paper',
+    image: '/assets/images/art/sale/vie-oil.jpg',
+    images: ['/assets/images/art/sale/vie-oil.jpg'],
+    description:
+      'First oil painting of Vie, inspired by the "Secrets are Secrets For a Reason" album. Might be cursed - buy at your own risk.',
+    status: 'available',
+  },
+  {
     id: 'art-002',
     title: '"Vie"',
     year: 2022,
@@ -40,6 +53,7 @@ export const shopProducts = [
       'First physical manifestation of Vie. Might be cursed - buy at your own risk.',
     status: 'available',
   },
+
   {
     id: 'oil-003',
     title: '"Untitled"',
@@ -52,6 +66,7 @@ export const shopProducts = [
     description: 'One of my first experimentations with oils.',
     status: 'available',
   },
+
   {
     id: 'oil-004',
     title: '"Hyponopompia"',
@@ -63,19 +78,6 @@ export const shopProducts = [
     images: ['/assets/images/art/sale/oil4.webp'],
     description:
       'Frantic expressionistic oil painting inspired by a hypnopompic hallucination I had. Might be cursed - buy at your own risk.',
-    status: 'available',
-  },
-  {
-    id: 'oil-005',
-    title: '"Vie"',
-    year: 2026,
-    price: 350,
-    size: '21,0 x 29,7 cm (A4)',
-    medium: 'Oil on canvas paper',
-    image: '/assets/images/art/sale/vie-oil.jpg',
-    images: ['/assets/images/art/sale/vie-oil.jpg'],
-    description:
-      'First oil painting of Vie, inspired by the "Secrets are Secrets For a Reason" album. Might be cursed - buy at your own risk.',
     status: 'available',
   },
 ];
