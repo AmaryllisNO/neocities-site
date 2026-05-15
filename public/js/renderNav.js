@@ -100,7 +100,7 @@ const navigationHTML = (mode, pathPrefix) => {
         />
         </a>
       
-      </li>
+    
    
         <li class="nav__list-item">
         <a class="nav__link" href="${pathPrefix}support.html">
@@ -108,6 +108,19 @@ const navigationHTML = (mode, pathPrefix) => {
             <p class="nav__link-text">Support Me</p>
           </div>
            <img
+          class="nav__link-underline"
+          src="${pathPrefix}assets/images/Simple Underline Bevel.png"
+          alt=""
+        />
+        </a>
+      </li>
+        </li>
+        <li class="nav__list-item">
+        <a class="nav__link" href="${pathPrefix}shop.html">
+          <div class="nav__link-container">
+            <p class="nav__link-text">Shop</p>
+          </div>
+            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
           alt=""
@@ -155,16 +168,3 @@ document.addEventListener('DOMContentLoaded', () => {
     copyrightElement.innerHTML = `© ${new Date().getFullYear()} Amaryllis `;
   }
 });
-
-/*   <li class="nav__list-item">
-        <a class="nav__link" href="${pathPrefix}shop.html">
-          <div class="nav__link-container">
-            <p class="nav__link-text">Shop</p>
-          </div>
-            <img
-          class="nav__link-underline"
-          src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
-        />
-        </a>
-      </li> */

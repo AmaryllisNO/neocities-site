@@ -88,3 +88,13 @@
     }
   }
 }
+
+@media screen and (max-width: 1710px) {
+  .nav {
+    &__link {
+      &-underline {
+        width: 150px;
+      }
+    }
+  }
+}

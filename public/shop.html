@@ -23,13 +23,12 @@
                 <li><a href="#">Shop</a></li>
             </ul>
 
-            <h1 class="title">Oil Painting Shop</h1>
+            <h1 class="title">Shop</h1>
 
             <section class="shop-intro">
                 <p>
-                    Original physical oil paintings by Amaryllis. Each piece is one of one, shipped with careful
-                    packaging and
-                    tracked delivery.
+                    Original physical paintings by me. Each piece is one of one, shipped with careful
+                    packaging and tracked delivery.
                 </p>
             </section>
 
@@ -68,8 +67,14 @@
                     <label for="order-email">Your email</label>
                     <input id="order-email" name="order-email" type="email" autocomplete="email" required>
 
-                    <label for="order-country">Shipping country</label>
-                    <input id="order-country" name="order-country" type="text" autocomplete="country-name" required>
+                    <label for="order-country">Shipping region</label>
+                    <select name="order-country" id="order-country" required>
+                        <option value="Norway">Norway</option>
+                        <option value="EU">EU</option>
+                        <option value="US">US</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Rest of World">Rest of World</option>
+                    </select>
 
                     <label for="order-notes">Notes (optional)</label>
                     <textarea id="order-notes" name="order-notes" rows="4"

@@ -30,8 +30,11 @@
 
 .body-container {
   display: flex;
-  height: 824px;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
   max-width: 1250px;
+  width: 100%;
   // overflow: scroll;
   transition: 1s ease-in-out;
   margin: 0 auto;
@@ -44,7 +47,8 @@ main {
   background-color: rgba(0, 0, 0, 0.388) !important;
   background-blend-mode: darken;
   flex-grow: 1;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 a {
@@ -124,9 +128,11 @@ p {
 }
 
 footer {
+  flex: 0 0 auto;
   padding: 1em;
   margin: 0 auto;
   max-width: 1250px;
+  width: 100%;
 }
 
 .socials {
@@ -180,12 +186,13 @@ footer {
 
   .body-container {
     flex-direction: column;
+    flex: 1 1 auto;
     width: 100%;
     max-width: 100%;
-    min-height: unset;
-    max-height: unset;
+    min-height: 0;
+    height: auto;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: visible;
   }
   main {
     width: 100%;

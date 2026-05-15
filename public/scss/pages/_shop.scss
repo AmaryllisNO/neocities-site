@@ -19,8 +19,6 @@
   }
 
   .shop-info-card {
-    border: 1px solid rgba(180, 205, 238, 0.4);
-    background: rgba(0, 0, 0, 0.2);
     padding: 0.5em;
 
     h2 {
@@ -37,9 +35,9 @@
 
   .shop-section {
     min-height: 180px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+    display: block;
+    column-width: 280px;
+    column-gap: 1rem;
   }
 
   .shop-loading {
@@ -48,36 +46,117 @@
   }
 
   .shop-product {
-    display: grid;
-    grid-template-columns: 130px 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
-    border: 1px solid rgba(180, 205, 238, 0.35);
-    padding: 0.85rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
+
+    &__media {
+      display: grid;
+      gap: 0.6rem;
+      align-content: start;
+    }
+
+    &__content {
+      display: grid;
+      gap: 0.45rem;
+      align-content: start;
+    }
+
+    &__image-frame {
+      position: relative;
+      background: rgba(5, 10, 16, 0.5);
+      aspect-ratio: var(--shop-product-ratio, 4 / 5);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     &__image {
-      width: 130px;
-      height: 160px;
-      object-fit: cover;
-      border: 1px solid rgba(180, 205, 238, 0.35);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    &__carousel-controls {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0.35rem;
+      pointer-events: none;
+    }
+
+    &__carousel-button {
+      pointer-events: auto;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid rgba(180, 205, 238, 0.6);
+      color: #f3f7fb;
+      background: rgba(10, 18, 29, 0.72);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: rgba(34, 52, 76, 0.84);
+      }
+    }
+
+    &__step-indicator {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      border: 1px solid rgba(180, 205, 238, 0.5);
+      background: rgba(10, 18, 29, 0.72);
+      color: #f3f7fb;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      pointer-events: auto;
     }
 
     &__title {
       margin-top: 0;
-      margin-bottom: 0.4rem;
+      // margin-bottom: 0.4rem;
       font-size: 1.3rem;
       font-family: 'Carta Marina', serif;
     }
 
+    &__year {
+      margin-left: 0.4rem;
+      font-size: 0.95rem;
+      font-size: 0.9rem;
+      color: #d3e0eb;
+    }
+
     &__meta {
       margin: 0;
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+      color: #9caec5;
     }
 
     &__price {
-      margin-top: 0.5rem;
-      margin-bottom: 0.7rem;
-      font-size: 1.05rem;
-      color: #e8f0f6;
+      // margin-top: 0.5rem;
+      // margin-bottom: 0.7rem;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    &__description {
+      margin: 0;
+      font-size: 0.95rem;
     }
 
     &__actions {
@@ -87,6 +166,7 @@
     }
 
     &__button {
+      margin-top: 0.5rem;
       border: 1px solid rgba(180, 205, 238, 0.6);
       color: #eef3f8;
       background: rgba(29, 46, 69, 0.6);
@@ -149,6 +229,7 @@
     }
 
     input,
+    select,
     textarea {
       background: rgba(0, 0, 0, 0.25);
       color: #f5f9fc;
@@ -156,6 +237,22 @@
       padding: 0.55rem;
       font-family: 'Times New Roman', Times, serif;
       font-size: 1rem;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #dce6ee 50%),
+        linear-gradient(135deg, #dce6ee 50%, transparent 50%);
+      background-position:
+        calc(100% - 16px) calc(50% - 2px),
+        calc(100% - 10px) calc(50% - 2px);
+      background-size:
+        6px 6px,
+        6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 2rem;
     }
 
     &__actions {
@@ -212,7 +309,8 @@
 @media only screen and (max-width: 900px) {
   .page-shop {
     .shop-section {
-      grid-template-columns: 1fr;
+      column-width: auto;
+      column-count: 1;
     }
 
     .shop-info-grid {
@@ -220,12 +318,10 @@
     }
 
     .shop-product {
-      grid-template-columns: 1fr;
-
       &__image {
         width: 100%;
         height: auto;
-        max-height: 340px;
+        max-height: 78vh;
       }
     }
   }

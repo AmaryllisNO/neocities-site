@@ -1,6 +1,8 @@
 import { shopConfig, shopProducts } from './shopProducts.js';
 
 const selectedProductIds = new Set();
+const carouselState = new Map();
+const DEFAULT_ASPECT_RATIO = '4 / 5';
 
 const elementIds = {
   products: 'shop-products',
@@ -16,39 +18,87 @@ const elementIds = {
 };
 
 const currency = (value) => `${shopConfig.currencySymbol}${value.toFixed(2)}`;
+const getProductById = (id) => shopProducts.find((item) => item.id === id);
+const getInputValue = (key) =>
+  document.getElementById(elementIds[key])?.value.trim() || '';
 
-const selectedProducts = () => {
-  return shopProducts.filter((product) => selectedProductIds.has(product.id));
+const selectedProducts = () =>
+  shopProducts.filter((product) => selectedProductIds.has(product.id));
+
+const getProductImages = (product) => {
+  if (Array.isArray(product.images) && product.images.length)
+    return product.images;
+  return product.image ? [product.image] : [];
+};
+
+const getProductAspectRatio = (product) => {
+  const rawSize = String(product.size || '');
+  const match = rawSize.match(/(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)/i);
+
+  if (!match) return DEFAULT_ASPECT_RATIO;
+
+  const width = Number(match[1].replace(',', '.'));
+  const height = Number(match[2].replace(',', '.'));
+
+  if (!Number.isFinite(width) || !Number.isFinite(height) || height <= 0)
+    return DEFAULT_ASPECT_RATIO;
+
+  return `${width} / ${height}`;
+};
+
+const getCarouselIndex = (product) => {
+  const images = getProductImages(product);
+  if (!images.length) return 0;
+  const current = carouselState.get(product.id) || 0;
+  return current >= images.length ? 0 : current;
+};
+
+const setCarouselIndex = (productId, nextIndex) => {
+  const product = getProductById(productId);
+  if (!product) return;
+
+  const images = getProductImages(product);
+  if (!images.length) return;
+
+  const safeIndex =
+    ((nextIndex % images.length) + images.length) % images.length;
+  carouselState.set(productId, safeIndex);
 };
 
 const estimateShipping = (country) => {
-  if (!country) return null;
-
-  const countryLower = country.toLowerCase();
-
-  // Check for exact or partial matches
-  const estimate = shopConfig.shippingEstimates.find((est) => {
-    return (
-      countryLower === est.region.toLowerCase() ||
-      countryLower.includes(est.region.toLowerCase()) ||
-      est.region.toLowerCase().includes(countryLower)
-    );
-  });
-
-  // Default to "Rest of World" if no match found
-  return (
-    estimate ||
-    shopConfig.shippingEstimates.find((est) => est.region === 'Rest of World')
+  const match = shopConfig.shippingEstimates.find(
+    (estimate) => estimate.region === country,
   );
+
+  return (
+    match ||
+    shopConfig.shippingEstimates.find(
+      (estimate) => estimate.region === 'Rest of World',
+    )
+  );
+};
+
+const getOrderTotals = (country) => {
+  const selected = selectedProducts();
+  const subtotal = selected.reduce((sum, product) => sum + product.price, 0);
+  const shippingEstimate = country ? estimateShipping(country) : null;
+  const shippingCost = shippingEstimate?.estimateUSD || 0;
+  return {
+    selected,
+    subtotal,
+    shippingEstimate,
+    shippingCost,
+    grandTotal: subtotal + shippingCost,
+  };
 };
 
 const renderSelectionSummary = () => {
   const orderMeta = document.getElementById(elementIds.orderMeta);
-  if (!orderMeta) {
-    return;
-  }
+  if (!orderMeta) return;
 
-  const selected = selectedProducts();
+  const country = getInputValue('country');
+  const { selected, subtotal, shippingEstimate, grandTotal } =
+    getOrderTotals(country);
 
   if (selected.length === 0) {
     orderMeta.innerHTML = `
@@ -58,13 +108,6 @@ const renderSelectionSummary = () => {
     return;
   }
 
-  const total = selected.reduce((sum, product) => sum + product.price, 0);
-  const country =
-    document.getElementById(elementIds.country)?.value.trim() || '';
-  const shippingEstimate = country ? estimateShipping(country) : null;
-  const shippingCost = shippingEstimate?.estimateNOK || 0;
-  const grandTotal = total + shippingCost;
-
   const listHtml = selected
     .map(
       (product) =>
@@ -72,39 +115,30 @@ const renderSelectionSummary = () => {
     )
     .join('');
 
-  let summaryHtml = `
+  const shippingHtml = shippingEstimate
+    ? `
+      <p><strong>Estimated shipping to ${country}:</strong> ${shippingEstimate.estimateUSD} USD</p>
+      <p><strong>Total (estimated):</strong> ${currency(grandTotal)} <span class="shop-muted">(final shipping confirmed after inquiry)</span></p>
+    `
+    : '<p class="shop-muted">Enter your shipping country above for a shipping estimate.</p>';
+
+  orderMeta.innerHTML = `
     <p><strong>Selected paintings (${selected.length}):</strong></p>
     <ul class="shop-inline-list">${listHtml}</ul>
-    <p><strong>Artwork subtotal:</strong> ${currency(total)}</p>
+    <p><strong>Artwork subtotal:</strong> ${currency(subtotal)}</p>
+    ${shippingHtml}
+    <p class="shop-note">Payment options: ${shopConfig.paymentMethods}</p>
   `;
-
-  if (shippingEstimate) {
-    summaryHtml += `
-      <p><strong>Estimated shipping to ${country}:</strong> ${shippingEstimate.estimateNOK}kr</p>
-      <p><strong>Total (estimated):</strong> ${currency(grandTotal)} <span class="shop-muted">(final shipping confirmed after inquiry)</span></p>
-    `;
-  } else {
-    summaryHtml += `<p class="shop-muted">Enter your shipping country above for a shipping estimate.</p>`;
-  }
-
-  summaryHtml += `<p class="shop-note">Payment options: ${shopConfig.paymentMethods}</p>`;
-
-  orderMeta.innerHTML = summaryHtml;
 };
 
 const buildOrderSummaryText = () => {
-  const name = document.getElementById(elementIds.name)?.value.trim() || '';
-  const email = document.getElementById(elementIds.email)?.value.trim() || '';
-  const country =
-    document.getElementById(elementIds.country)?.value.trim() || '';
-  const notes = document.getElementById(elementIds.notes)?.value.trim() || '';
+  const name = getInputValue('name');
+  const email = getInputValue('email');
+  const country = getInputValue('country');
+  const notes = getInputValue('notes');
 
-  const selected = selectedProducts();
-  const total = selected.reduce((sum, product) => sum + product.price, 0);
-
-  const shippingEstimate = country ? estimateShipping(country) : null;
-  const shippingCost = shippingEstimate?.estimateNOK || 0;
-  const grandTotal = total + shippingCost;
+  const { selected, subtotal, shippingEstimate, shippingCost, grandTotal } =
+    getOrderTotals(country);
 
   const lines = [];
   lines.push('Order inquiry for original oil paintings');
@@ -123,9 +157,9 @@ const buildOrderSummaryText = () => {
   });
 
   lines.push('');
-  lines.push(`Artwork subtotal: ${currency(total)}`);
+  lines.push(`Artwork subtotal: ${currency(subtotal)}`);
   if (shippingEstimate) {
-    lines.push(`Estimated shipping to ${country}: ${shippingCost}kr`);
+    lines.push(`Estimated shipping to ${country}: ${shippingCost} USD`);
     lines.push(`Total (estimated): ${currency(grandTotal)}`);
   }
   lines.push(`Preferred payment route: ${shopConfig.paymentMethods}`);
@@ -152,10 +186,9 @@ const validateOrderInput = () => {
     return 'Select at least one available painting.';
   }
 
-  const name = document.getElementById(elementIds.name)?.value.trim() || '';
-  const email = document.getElementById(elementIds.email)?.value.trim() || '';
-  const country =
-    document.getElementById(elementIds.country)?.value.trim() || '';
+  const name = getInputValue('name');
+  const email = getInputValue('email');
+  const country = getInputValue('country');
 
   if (!name || !email || !country) {
     return 'Please fill in name, email, and shipping country.';
@@ -172,68 +205,111 @@ const validateOrderInput = () => {
 };
 
 const toggleProductSelection = (productId) => {
-  if (selectedProductIds.has(productId)) {
-    selectedProductIds.delete(productId);
-  } else {
-    selectedProductIds.add(productId);
-  }
+  selectedProductIds.has(productId)
+    ? selectedProductIds.delete(productId)
+    : selectedProductIds.add(productId);
 
   renderSelectionSummary();
   renderProductGrid();
 };
 
+const renderProductCard = (product) => {
+  const isSelected = selectedProductIds.has(product.id);
+  const isSold = product.status === 'sold';
+  const buttonText = isSold ? 'Sold' : isSelected ? 'Remove' : 'Add to Inquiry';
+  const images = getProductImages(product);
+  const activeImageIndex = getCarouselIndex(product);
+  const activeImage = images[activeImageIndex] || product.image || '';
+  const frameRatio = getProductAspectRatio(product);
+
+  const carouselControls =
+    images.length > 1
+      ? `
+        <span class="shop-product__step-indicator" aria-label="Image ${activeImageIndex + 1} of ${images.length}">
+          ${activeImageIndex + 1} / ${images.length}
+        </span>
+        <button
+          type="button"
+          class="shop-product__carousel-button"
+          data-carousel-prev="${product.id}"
+          aria-label="Previous image for ${product.title}"
+        >
+          <span aria-hidden="true">&#10094;</span>
+        </button>
+        <button
+          type="button"
+          class="shop-product__carousel-button"
+          data-carousel-next="${product.id}"
+          aria-label="Next image for ${product.title}"
+        >
+          <span aria-hidden="true">&#10095;</span>
+        </button>
+      `
+      : '';
+
+  return `
+    <article class="shop-product${isSold ? ' shop-product--sold' : ''}">
+      <div class="shop-product__media">
+        <div class="shop-product__image-frame" style="--shop-product-ratio: ${frameRatio};">
+          <img class="shop-product__image" src="${activeImage}" alt="${product.title}">
+          <div class="shop-product__carousel-controls">${carouselControls}</div>
+        </div>
+      </div>
+      <div class="shop-product__content">
+        <p class="shop-product__price">${currency(product.price)}</p>
+        <h2 class="shop-product__title">${product.title} <span class="shop-product__year">${product.year}</span></h2>
+        <p class="shop-product__meta">${product.medium} · ${product.size}</p>
+        <p class="shop-product__description">${product.description}</p>
+        <div class="shop-product__actions">
+          <button
+            type="button"
+            class="shop-product__button"
+            data-product-id="${product.id}"
+            ${isSold ? 'disabled' : ''}
+          >
+            ${buttonText}
+          </button>
+          ${isSold ? '<span class="shop-product__sold-tag">Unavailable</span>' : ''}
+        </div>
+      </div>
+    </article>
+  `;
+};
+
 const renderProductGrid = () => {
   const productsRoot = document.getElementById(elementIds.products);
-  if (!productsRoot) {
+  if (!productsRoot) return;
+  productsRoot.innerHTML = shopProducts.map(renderProductCard).join('');
+};
+
+const rotateCarousel = (productId, direction) => {
+  const product = getProductById(productId);
+  if (!product) return;
+
+  setCarouselIndex(productId, getCarouselIndex(product) + direction);
+  renderProductGrid();
+};
+
+const handleProductsClick = (event) => {
+  const toggleButton = event.target.closest('[data-product-id]');
+  if (toggleButton) {
+    const productId = toggleButton.getAttribute('data-product-id');
+    if (productId) toggleProductSelection(productId);
     return;
   }
 
-  const cards = shopProducts
-    .map((product) => {
-      const isSelected = selectedProductIds.has(product.id);
-      const isSold = product.status === 'sold';
-      const cardClasses = `shop-product${isSold ? ' shop-product--sold' : ''}`;
-      const buttonText = isSold
-        ? 'Sold'
-        : isSelected
-          ? 'Remove'
-          : 'Add to Inquiry';
+  const prevButton = event.target.closest('[data-carousel-prev]');
+  if (prevButton) {
+    const productId = prevButton.getAttribute('data-carousel-prev');
+    if (productId) rotateCarousel(productId, -1);
+    return;
+  }
 
-      return `
-        <article class="${cardClasses}">
-          <img class="shop-product__image" src="${product.image}" alt="${product.title}">
-          <div>
-            <h2 class="shop-product__title">${product.title}</h2>
-            <p class="shop-product__meta">${product.medium} · ${product.size}</p>
-            <p class="shop-product__price">${currency(product.price)}</p>
-            <p>${product.description}</p>
-            <div class="shop-product__actions">
-              <button
-                type="button"
-                class="shop-product__button"
-                data-product-id="${product.id}"
-                ${isSold ? 'disabled' : ''}
-              >
-                ${buttonText}
-              </button>
-              ${isSold ? '<span class="shop-product__sold-tag">Unavailable</span>' : ''}
-            </div>
-          </div>
-        </article>
-      `;
-    })
-    .join('');
+  const nextButton = event.target.closest('[data-carousel-next]');
+  if (!nextButton) return;
 
-  productsRoot.innerHTML = cards;
-
-  productsRoot.querySelectorAll('[data-product-id]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const productId = button.getAttribute('data-product-id');
-      if (productId) {
-        toggleProductSelection(productId);
-      }
-    });
-  });
+  const productId = nextButton.getAttribute('data-carousel-next');
+  if (productId) rotateCarousel(productId, 1);
 };
 
 const openEmailDraft = () => {
@@ -278,6 +354,9 @@ const clearSelection = () => {
 };
 
 const initManualShop = () => {
+  const productsRoot = document.getElementById(elementIds.products);
+
+  productsRoot?.addEventListener('click', handleProductsClick);
   renderProductGrid();
   renderSelectionSummary();
 
@@ -291,7 +370,6 @@ const initManualShop = () => {
     .getElementById(elementIds.clearSelection)
     ?.addEventListener('click', clearSelection);
 
-  // Update summary when country changes
   document
     .getElementById(elementIds.country)
     ?.addEventListener('input', renderSelectionSummary);
