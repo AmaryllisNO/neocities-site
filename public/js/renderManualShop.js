@@ -251,6 +251,7 @@ const renderProductCard = (product) => {
     <article class="shop-product${isSold ? ' shop-product--sold' : ''}">
       <div class="shop-product__media">
         <div class="shop-product__image-frame" style="--shop-product-ratio: ${frameRatio};">
+        ${isSold ? '<div class="shop-product__sold-overlay">SOLD</div>' : ''}
           <img class="shop-product__image" src="${activeImage}" alt="${product.title}">
           <div class="shop-product__carousel-controls">${carouselControls}</div>
         </div>
@@ -261,14 +262,19 @@ const renderProductCard = (product) => {
         <p class="shop-product__meta">${product.medium} · ${product.size}</p>
         <p class="shop-product__description">${product.description}</p>
         <div class="shop-product__actions">
-          <button
+        ${
+          isSold
+            ? ``
+            : ` <button
             type="button"
             class="shop-product__button"
             data-product-id="${product.id}"
             ${isSold ? 'disabled' : ''}
           >
             ${buttonText}
-          </button>
+          </button>`
+        }
+         
           ${isSold ? '<span class="shop-product__sold-tag">Unavailable</span>' : ''}
         </div>
       </div>

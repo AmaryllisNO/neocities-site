@@ -51,7 +51,7 @@ export const shopProducts = [
     images: ['/assets/images/art/sale/vie1.jpg'],
     description:
       'First physical manifestation of Vie. Might be cursed - buy at your own risk.',
-    status: 'available',
+    status: 'sold',
   },
 
   {
