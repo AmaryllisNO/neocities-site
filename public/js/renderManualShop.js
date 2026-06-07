@@ -19,6 +19,17 @@ const elementIds = {
 
 const currency = (value) => `${shopConfig.currencySymbol}${value.toFixed(2)}`;
 const getProductById = (id) => shopProducts.find((item) => item.id === id);
+const getOrderPrice = (product) => {
+  if (
+    product.status === 'on sale' &&
+    Number.isFinite(product.reducedPrice) &&
+    product.reducedPrice > 0
+  ) {
+    return product.reducedPrice;
+  }
+
+  return product.price;
+};
 const getInputValue = (key) =>
   document.getElementById(elementIds[key])?.value.trim() || '';
 
@@ -80,7 +91,10 @@ const estimateShipping = (country) => {
 
 const getOrderTotals = (country) => {
   const selected = selectedProducts();
-  const subtotal = selected.reduce((sum, product) => sum + product.price, 0);
+  const subtotal = selected.reduce(
+    (sum, product) => sum + getOrderPrice(product),
+    0,
+  );
   const shippingEstimate = country ? estimateShipping(country) : null;
   const shippingCost = shippingEstimate?.estimateUSD || 0;
   return {
@@ -111,7 +125,7 @@ const renderSelectionSummary = () => {
   const listHtml = selected
     .map(
       (product) =>
-        `<li>${product.title} (${product.id}) - ${currency(product.price)}</li>`,
+        `<li>${product.title} (${product.id}) - ${currency(getOrderPrice(product))}</li>`,
     )
     .join('');
 
@@ -153,7 +167,7 @@ const buildOrderSummaryText = () => {
     lines.push(`- ${product.title} [${product.id}]`);
     lines.push(`  Medium: ${product.medium}`);
     lines.push(`  Size: ${product.size}`);
-    lines.push(`  Price: ${currency(product.price)}`);
+    lines.push(`  Price: ${currency(getOrderPrice(product))}`);
   });
 
   lines.push('');
