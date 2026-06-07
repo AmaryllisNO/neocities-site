@@ -216,11 +216,16 @@ const toggleProductSelection = (productId) => {
 const renderProductCard = (product) => {
   const isSelected = selectedProductIds.has(product.id);
   const isSold = product.status === 'sold';
+  const isOnSale = product.status === 'on sale';
   const buttonText = isSold ? 'Sold' : isSelected ? 'Remove' : 'Add to Inquiry';
   const images = getProductImages(product);
   const activeImageIndex = getCarouselIndex(product);
   const activeImage = images[activeImageIndex] || product.image || '';
   const frameRatio = getProductAspectRatio(product);
+
+  console.log(
+    `Rendering product ${product.id} with status "${product.status}" and ${images.length} image(s). Active image index: ${activeImageIndex}`,
+  );
 
   const carouselControls =
     images.length > 1
@@ -257,7 +262,14 @@ const renderProductCard = (product) => {
         </div>
       </div>
       <div class="shop-product__content">
-        <p class="shop-product__price">${currency(product.price)}</p>
+        ${
+          isOnSale
+            ? `<div class="shop-product__price-row">
+              <p class="shop-product__price--strikethrough">${currency(product.price)}</p>
+              <p class="shop-product__price">${currency(product.reducedPrice)}</p>
+            </div>`
+            : `<p class="shop-product__price">${currency(product.price)}</p>`
+        }
         <h2 class="shop-product__title">${product.title} <span class="shop-product__year">${product.year}</span></h2>
         <p class="shop-product__meta">${product.medium} · ${product.size}</p>
         <p class="shop-product__description">${product.description}</p>
