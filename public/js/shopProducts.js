@@ -1,5 +1,6 @@
 export const shopConfig = {
   contactEmail: 'inquiries@amaryllis.no',
+  emailerEndpoint: 'https://emailer.fly.dev/send-email',
   currencySymbol: '$',
   paymentMethods:
     'Bank transfer, PayPal invoice, or local payment methods by agreement.',

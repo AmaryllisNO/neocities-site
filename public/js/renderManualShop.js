@@ -3,6 +3,7 @@ import { shopConfig, shopProducts } from './shopProducts.js';
 const selectedProductIds = new Set();
 const carouselState = new Map();
 const DEFAULT_ASPECT_RATIO = '4 / 5';
+const DEFAULT_EMAILER_ENDPOINT = 'https://emailer.fly.dev/send-email';
 
 const elementIds = {
   products: 'shop-products',
@@ -13,12 +14,22 @@ const elementIds = {
   country: 'order-country',
   notes: 'order-notes',
   openDraft: 'open-order-email',
-  copySummary: 'copy-order-summary',
   clearSelection: 'clear-order-selection',
 };
 
 const currency = (value) => `${shopConfig.currencySymbol}${value.toFixed(2)}`;
 const getProductById = (id) => shopProducts.find((item) => item.id === id);
+const escapeHtml = (value) =>
+  String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+const toEmailLineBreaks = (value) =>
+  escapeHtml(value).replace(/\r?\n/g, '<br>');
+const getEmailerEndpoint = () =>
+  shopConfig.emailerEndpoint || DEFAULT_EMAILER_ENDPOINT;
 const getOrderPrice = (product) => {
   if (
     product.status === 'on sale' &&
@@ -145,7 +156,7 @@ const renderSelectionSummary = () => {
   `;
 };
 
-const buildOrderSummaryText = () => {
+const buildOrderSummaryHtml = () => {
   const name = getInputValue('name');
   const email = getInputValue('email');
   const country = getInputValue('country');
@@ -154,37 +165,35 @@ const buildOrderSummaryText = () => {
   const { selected, subtotal, shippingEstimate, shippingCost, grandTotal } =
     getOrderTotals(country);
 
-  const lines = [];
-  lines.push('Order inquiry for original oil paintings');
-  lines.push('');
-  lines.push(`Name: ${name}`);
-  lines.push(`Email: ${email}`);
-  lines.push(`Shipping country: ${country}`);
-  lines.push('');
-  lines.push('Requested paintings:');
+  const requestedPaintingsHtml = selected
+    .map(
+      (product, index) =>
+        `<strong>${index + 1}. ${escapeHtml(product.title)} [${escapeHtml(product.id)}]</strong><br>Medium: ${escapeHtml(product.medium)}<br>Size: ${escapeHtml(product.size)}<br>Price: ${escapeHtml(currency(getOrderPrice(product)))}`,
+    )
+    .join('<br><br>');
 
-  selected.forEach((product) => {
-    lines.push(`- ${product.title} [${product.id}]`);
-    lines.push(`  Medium: ${product.medium}`);
-    lines.push(`  Size: ${product.size}`);
-    lines.push(`  Price: ${currency(getOrderPrice(product))}`);
-  });
+  const shippingHtml = shippingEstimate
+    ? `Estimated shipping to ${escapeHtml(country)}: ${escapeHtml(String(shippingCost))} USD<br><strong>Total (estimated): ${escapeHtml(currency(grandTotal))}</strong><br><span style="color:#6b6b6b">(final shipping confirmed after inquiry)</span>`
+    : 'Shipping estimate unavailable.';
 
-  lines.push('');
-  lines.push(`Artwork subtotal: ${currency(subtotal)}`);
-  if (shippingEstimate) {
-    lines.push(`Estimated shipping to ${country}: ${shippingCost} USD`);
-    lines.push(`Total (estimated): ${currency(grandTotal)}`);
-  }
-  lines.push(`Preferred payment route: ${shopConfig.paymentMethods}`);
+  const notesHtml = notes
+    ? `<br><br><strong>Notes</strong><br>${toEmailLineBreaks(notes)}`
+    : '';
 
-  if (notes) {
-    lines.push('');
-    lines.push('Notes:');
-    lines.push(notes);
-  }
-
-  return lines.join('\n');
+  return `
+    <strong>Order inquiry for original oil paintings</strong><br><br>
+    <strong>Customer</strong><br>
+    Name: ${escapeHtml(name)}<br>
+    Email: ${escapeHtml(email)}<br>
+    Shipping country: ${escapeHtml(country)}<br><br>
+    <strong>Requested paintings (${selected.length})</strong><br>
+    ${requestedPaintingsHtml}<br><br>
+    <strong>Pricing</strong><br>
+    Artwork subtotal: ${escapeHtml(currency(subtotal))}<br>
+    ${shippingHtml}<br><br>
+    Preferred payment route: ${escapeHtml(shopConfig.paymentMethods)}
+    ${notesHtml}
+  `;
 };
 
 const setStatus = (message) => {
@@ -206,13 +215,6 @@ const validateOrderInput = () => {
 
   if (!name || !email || !country) {
     return 'Please fill in name, email, and shipping country.';
-  }
-
-  if (
-    !shopConfig.contactEmail ||
-    shopConfig.contactEmail === 'youremail@example.com'
-  ) {
-    return 'Set your real contactEmail in js/shopProducts.js before using email draft.';
   }
 
   return '';
@@ -344,37 +346,56 @@ const handleProductsClick = (event) => {
   if (productId) rotateCarousel(productId, 1);
 };
 
-const openEmailDraft = () => {
+const sendOrderInquiry = async () => {
   const validationError = validateOrderInput();
   if (validationError) {
     setStatus(validationError);
     return;
   }
 
-  const summary = buildOrderSummaryText();
-  const subject = encodeURIComponent('Painting order inquiry');
-  const body = encodeURIComponent(summary);
-  const mailto = `mailto:${shopConfig.contactEmail}?subject=${subject}&body=${body}`;
+  const submitButton = document.getElementById(elementIds.openDraft);
+  const originalButtonText = submitButton?.textContent;
 
-  window.location.href = mailto;
-  setStatus('Email draft opened with your selected paintings.');
-};
-
-const copyOrderSummary = async () => {
-  const validationError = validateOrderInput();
-  if (validationError) {
-    setStatus(validationError);
-    return;
+  if (submitButton) {
+    submitButton.setAttribute('disabled', 'true');
+    submitButton.textContent = 'Sending...';
   }
 
-  const summary = buildOrderSummaryText();
+  const name = getInputValue('name');
+  const senderEmail = getInputValue('email');
+  const summary = buildOrderSummaryHtml();
+  const subject = 'Painting order inquiry';
+  const endpoint = getEmailerEndpoint();
 
   try {
-    await navigator.clipboard.writeText(summary);
-    setStatus('Order summary copied to clipboard.');
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        senderEmail,
+        subject,
+        message: summary,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Email request failed with status ${response.status}`);
+    }
+
+    setStatus('Inquiry sent successfully. I will follow up by email soon.');
   } catch (error) {
     console.error(error);
-    setStatus('Could not copy automatically. Use Open Email Draft instead.');
+    setStatus(
+      'Could not send inquiry right now. Please try again in a moment.',
+    );
+  } finally {
+    if (submitButton) {
+      submitButton.removeAttribute('disabled');
+      submitButton.textContent = originalButtonText || 'Send Inquiry';
+    }
   }
 };
 
@@ -394,10 +415,7 @@ const initManualShop = () => {
 
   document
     .getElementById(elementIds.openDraft)
-    ?.addEventListener('click', openEmailDraft);
-  document
-    .getElementById(elementIds.copySummary)
-    ?.addEventListener('click', copyOrderSummary);
+    ?.addEventListener('click', sendOrderInquiry);
   document
     .getElementById(elementIds.clearSelection)
     ?.addEventListener('click', clearSelection);
