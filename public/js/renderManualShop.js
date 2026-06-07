@@ -196,6 +196,67 @@ const buildOrderSummaryHtml = () => {
   `;
 };
 
+const buildCustomerReceiptText = () => {
+  const name = getInputValue('name');
+  const email = getInputValue('email');
+  const country = getInputValue('country');
+  const notes = getInputValue('notes');
+
+  const { selected, subtotal, shippingEstimate, shippingCost, grandTotal } =
+    getOrderTotals(country);
+
+  const lines = [];
+  lines.push('Amaryllis Shop - Inquiry Receipt');
+  lines.push(`Receipt generated: ${new Date().toLocaleString()}`);
+  lines.push('');
+  lines.push('Customer');
+  lines.push(`Name: ${name}`);
+  lines.push(`Email: ${email}`);
+  lines.push(`Shipping country: ${country}`);
+  lines.push('');
+  lines.push(`Requested paintings (${selected.length})`);
+
+  selected.forEach((product, index) => {
+    lines.push(`${index + 1}. ${product.title} [${product.id}]`);
+    lines.push(`   Medium: ${product.medium}`);
+    lines.push(`   Size: ${product.size}`);
+    lines.push(`   Price: ${currency(getOrderPrice(product))}`);
+  });
+
+  lines.push('');
+  lines.push(`Artwork subtotal: ${currency(subtotal)}`);
+  if (shippingEstimate) {
+    lines.push(`Estimated shipping to ${country}: ${shippingCost} USD`);
+    lines.push(`Total (estimated): ${currency(grandTotal)}`);
+    lines.push('(Final shipping confirmed after inquiry.)');
+  } else {
+    lines.push('Shipping estimate unavailable.');
+  }
+  lines.push(`Preferred payment route: ${shopConfig.paymentMethods}`);
+
+  if (notes) {
+    lines.push('');
+    lines.push('Notes');
+    lines.push(notes);
+  }
+
+  return lines.join('\n');
+};
+
+const downloadReceiptFile = (receiptText) => {
+  const dateStamp = new Date().toISOString().slice(0, 10);
+  const blob = new Blob([receiptText], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = `amaryllis-inquiry-receipt-${dateStamp}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
+
 const setStatus = (message) => {
   const status = document.getElementById(elementIds.orderStatus);
   if (status) {
@@ -385,7 +446,22 @@ const sendOrderInquiry = async () => {
       throw new Error(`Email request failed with status ${response.status}`);
     }
 
-    setStatus('Inquiry sent successfully. I will follow up by email soon.');
+    const receiptText = buildCustomerReceiptText();
+    let receiptCopied = false;
+
+    try {
+      await navigator.clipboard.writeText(receiptText);
+      receiptCopied = true;
+    } catch (clipboardError) {
+      console.warn('Could not copy receipt to clipboard.', clipboardError);
+    }
+
+    downloadReceiptFile(receiptText);
+    setStatus(
+      receiptCopied
+        ? 'Inquiry sent. Receipt copied to clipboard and downloaded as .txt.'
+        : 'Inquiry sent. Receipt downloaded as .txt.',
+    );
   } catch (error) {
     console.error(error);
     setStatus(
