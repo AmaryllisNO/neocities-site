@@ -1,6 +1,6 @@
 export const shopConfig = {
   contactEmail: 'inquiries@amaryllis.no',
-  emailerEndpoint: 'https://emailer.fly.dev/send-email',
+  emailerEndpoint: 'https://emailer-withered-snow-9611.fly.dev/send-email',
   currencySymbol: '$',
   paymentMethods:
     'Bank transfer, PayPal invoice, or local payment methods by agreement.',

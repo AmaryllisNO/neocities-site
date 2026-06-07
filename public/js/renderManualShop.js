@@ -3,7 +3,8 @@ import { shopConfig, shopProducts } from './shopProducts.js';
 const selectedProductIds = new Set();
 const carouselState = new Map();
 const DEFAULT_ASPECT_RATIO = '4 / 5';
-const DEFAULT_EMAILER_ENDPOINT = 'https://emailer.fly.dev/send-email';
+const DEFAULT_EMAILER_ENDPOINT =
+  'https://emailer-withered-snow-9611.fly.dev/send-email';
 
 const elementIds = {
   products: 'shop-products',
