@@ -44,7 +44,7 @@ const navigationHTML = (mode, pathPrefix) => {
             <img
           class="nav__link-underline "
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       
@@ -57,7 +57,7 @@ const navigationHTML = (mode, pathPrefix) => {
            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
        
@@ -70,7 +70,7 @@ const navigationHTML = (mode, pathPrefix) => {
             <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       
@@ -83,7 +83,7 @@ const navigationHTML = (mode, pathPrefix) => {
             <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       
@@ -96,7 +96,7 @@ const navigationHTML = (mode, pathPrefix) => {
             <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       
@@ -110,7 +110,7 @@ const navigationHTML = (mode, pathPrefix) => {
            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       </li>
@@ -123,7 +123,7 @@ const navigationHTML = (mode, pathPrefix) => {
             <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       </li>
@@ -136,7 +136,7 @@ const navigationHTML = (mode, pathPrefix) => {
            <img
           class="nav__link-underline"
           src="${pathPrefix}assets/images/Simple Underline Bevel.png"
-          alt=""
+          alt="underline bevel"
         />
         </a>
       </li>
