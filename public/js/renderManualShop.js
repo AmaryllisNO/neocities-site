@@ -137,23 +137,23 @@ const renderSelectionSummary = () => {
   const listHtml = selected
     .map(
       (product) =>
-        `<li>${product.title} (${product.id}) - ${currency(getOrderPrice(product))}</li>`,
+        `<li>${escapeHtml(product.title)} (${escapeHtml(product.id)}) - ${escapeHtml(currency(getOrderPrice(product)))}</li>`,
     )
     .join('');
 
   const shippingHtml = shippingEstimate
     ? `
-      <p><strong>Estimated shipping to ${country}:</strong> ${shippingEstimate.estimateUSD} USD</p>
-      <p><strong>Total (estimated):</strong> ${currency(grandTotal)} <span class="shop-muted">(final shipping confirmed after inquiry)</span></p>
+      <p><strong>Estimated shipping to ${escapeHtml(country)}:</strong> ${escapeHtml(String(shippingEstimate.estimateUSD))} USD</p>
+      <p><strong>Total (estimated):</strong> ${escapeHtml(currency(grandTotal))} <span class="shop-muted">(final shipping confirmed after inquiry)</span></p>
     `
     : '<p class="shop-muted">Enter your shipping country above for a shipping estimate.</p>';
 
   orderMeta.innerHTML = `
     <p><strong>Selected paintings (${selected.length}):</strong></p>
     <ul class="shop-inline-list">${listHtml}</ul>
-    <p><strong>Artwork subtotal:</strong> ${currency(subtotal)}</p>
+    <p><strong>Artwork subtotal:</strong> ${escapeHtml(currency(subtotal))}</p>
     ${shippingHtml}
-    <p class="shop-note">Payment options: ${shopConfig.paymentMethods}</p>
+    <p class="shop-note">Payment options: ${escapeHtml(shopConfig.paymentMethods)}</p>
   `;
 };
 
@@ -300,9 +300,25 @@ const renderProductCard = (product) => {
   const activeImageIndex = getCarouselIndex(product);
   const activeImage = images[activeImageIndex] || product.image || '';
   const frameRatio = getProductAspectRatio(product);
+  const safeId = escapeHtml(product.id);
+  const safeTitle = escapeHtml(product.title);
+  const safeYear = escapeHtml(String(product.year || ''));
+  const safeMedium = escapeHtml(product.medium);
+  const safeSize = escapeHtml(product.size);
+  const safeDescription = escapeHtml(product.description);
+  const safeImageSrc = escapeHtml(activeImage);
+  const safeButtonText = escapeHtml(buttonText);
+  const safePrice = escapeHtml(currency(product.price));
+  const safeReducedPrice = escapeHtml(currency(product.reducedPrice));
+  const altDetails = [product.title, product.medium, product.size]
+    .filter(Boolean)
+    .join(', ');
+  const imageAlt = `${altDetails}${product.year ? ` (${product.year})` : ''} original painting by Amaryllis`;
+  const safeImageAlt = escapeHtml(imageAlt);
 
   console.log(
     `Rendering product ${product.id} with status "${product.status}" and ${images.length} image(s). Active image index: ${activeImageIndex}`,
+    `title: ${product.title}, price: ${product.price}, reducedPrice: ${product.reducedPrice}`,
   );
 
   const carouselControls =
@@ -314,16 +330,16 @@ const renderProductCard = (product) => {
         <button
           type="button"
           class="shop-product__carousel-button"
-          data-carousel-prev="${product.id}"
-          aria-label="Previous image for ${product.title}"
+          data-carousel-prev="${safeId}"
+          aria-label="Previous image for ${safeTitle}"
         >
           <span aria-hidden="true">&#10094;</span>
         </button>
         <button
           type="button"
           class="shop-product__carousel-button"
-          data-carousel-next="${product.id}"
-          aria-label="Next image for ${product.title}"
+          data-carousel-next="${safeId}"
+          aria-label="Next image for ${safeTitle}"
         >
           <span aria-hidden="true">&#10095;</span>
         </button>
@@ -335,7 +351,7 @@ const renderProductCard = (product) => {
       <div class="shop-product__media">
         <div class="shop-product__image-frame" style="--shop-product-ratio: ${frameRatio};">
         ${isSold ? '<div class="shop-product__sold-overlay">SOLD</div>' : ''}
-          <img class="shop-product__image" src="${activeImage}" alt="${product.title}">
+          <img class="shop-product__image" src="${safeImageSrc}" alt="${safeImageAlt}">
           <div class="shop-product__carousel-controls">${carouselControls}</div>
         </div>
       </div>
@@ -343,14 +359,14 @@ const renderProductCard = (product) => {
         ${
           isOnSale
             ? `<div class="shop-product__price-row">
-              <p class="shop-product__price--strikethrough">${currency(product.price)}</p>
-              <p class="shop-product__price">${currency(product.reducedPrice)}</p>
+              <p class="shop-product__price--strikethrough">${safePrice}</p>
+              <p class="shop-product__price">${safeReducedPrice}</p>
             </div>`
-            : `<p class="shop-product__price">${currency(product.price)}</p>`
+            : `<p class="shop-product__price">${safePrice}</p>`
         }
-        <h2 class="shop-product__title">${product.title} <span class="shop-product__year">${product.year}</span></h2>
-        <p class="shop-product__meta">${product.medium} · ${product.size}</p>
-        <p class="shop-product__description">${product.description}</p>
+        <h2 class="shop-product__title">${safeTitle} <span class="shop-product__year">${safeYear}</span></h2>
+        <p class="shop-product__meta">${safeMedium} · ${safeSize}</p>
+        <p class="shop-product__description">${safeDescription}</p>
         <div class="shop-product__actions">
         ${
           isSold
@@ -358,10 +374,10 @@ const renderProductCard = (product) => {
             : ` <button
             type="button"
             class="shop-product__button"
-            data-product-id="${product.id}"
+            data-product-id="${safeId}"
             ${isSold ? 'disabled' : ''}
           >
-            ${buttonText}
+            ${safeButtonText}
           </button>`
         }
          
