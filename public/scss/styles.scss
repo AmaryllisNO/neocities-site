@@ -169,7 +169,7 @@ footer {
   animation: scroll-left 15s linear infinite; /* Adjust the duration as needed */
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .nav {
     &--mobile {
       display: block;
