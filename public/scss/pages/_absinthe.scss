@@ -52,23 +52,73 @@
     padding: 0.12em 0.6em;
     font-family: 'Carta Marina', serif;
     font-size: 0.95em;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      box-shadow 0.18s ease,
+      transform 0.18s ease,
+      filter 0.18s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      box-shadow: 0 0 0 1px rgba(245, 231, 204, 0.2);
+      outline: none;
+    }
+
+    &.is-active {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(255, 235, 196, 0.35),
+        0 0 12px rgba(244, 200, 121, 0.28),
+        inset 0 0 0 1px rgba(255, 236, 204, 0.25);
+      border-color: rgba(255, 232, 189, 0.85);
+      text-shadow: 0 0 8px rgba(255, 225, 167, 0.35);
+    }
 
     &--faux {
       color: #ffd7d7;
       background: rgba(170, 64, 64, 0.25);
       border: 1px solid rgba(220, 120, 120, 0.5);
+
+      &.is-active {
+        background: linear-gradient(
+          180deg,
+          rgba(156, 51, 51, 0.82),
+          rgba(101, 23, 23, 0.78)
+        );
+      }
     }
 
     &--traditional {
       color: #dafce2;
       background: rgba(46, 119, 67, 0.25);
       border: 1px solid rgba(102, 182, 123, 0.5);
+
+      &.is-active {
+        background: linear-gradient(
+          180deg,
+          rgba(41, 116, 59, 0.82),
+          rgba(20, 74, 35, 0.8)
+        );
+      }
     }
 
     &--pastis {
       color: #fff0c9;
       background: rgba(171, 124, 34, 0.25);
       border: 1px solid rgba(219, 174, 91, 0.5);
+
+      &.is-active {
+        background: linear-gradient(
+          180deg,
+          rgba(177, 121, 32, 0.82),
+          rgba(113, 70, 18, 0.8)
+        );
+      }
     }
   }
 
@@ -149,12 +199,14 @@
     margin-bottom: 1.5em;
 
     img {
+      background: #fff;
       flex-shrink: 0;
-      width: 100px;
+      width: 200px;
       height: 300px;
       object-fit: contain;
-      object-position: center;
-      display: block;
+      object-position: 50% 10%;
+      border-radius: 5px;
+      // display: block;
       //   border: 2px solid rgba(150, 150, 150, 0.3);
       //   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }

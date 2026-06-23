@@ -1,0 +1,215 @@
+[
+  {
+    "id": "Père-Kermanns-Absinthe",
+    "name": "Père Kermann's Absinthe",
+    "abv": 60,
+    "origin": "France",
+    "type": "Faux Absinthe",
+    "image": "https://bilder.vinmonopolet.no/cache/515x515-0/3349401-1.jpg",
+    "dateOfReview": null,
+    "tasting": {
+      "appearance": "Artificial neon blue/green",
+      "aroma": "Mint",
+      "taste": "Alcoholic mouthwash. Pure mint without any other flavour profile to speak of.",
+      "louche": null,
+      "ingredients": "Alcohol, Water, Aroma, Wormwood Infusion, sugar, colourings (E133, E102)"
+    },
+    "rating": {
+      "score": 1,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": [
+      "Feels kinda wrong for this to be the first entry of the list, but it might serve as a perfect example of what an absinthe isn't. Because there isn't any legal definition of absinthe (except for in Switzerland), producers are free to label it as such. This coupled with the rich and esoteric history behind the spirit, makes it a pretty easy thing to market as a weird mysterious drink - this being one such example.",
+      "Pére Kermann's Absinthe is labeled as having \"wormwood infusions\", which seems intentionally vague for a reason. As per my understanding, you could essentially use any strain of the artemisia family in there and call it absinthe, but traditional absinthe requires grand wormwood (artemisia absinthium).",
+      "At least it's got a neat 'lil illustration of like a medieval alchemist on it, so that's cool. Tastes like pure mouthwash, does not louche, has a weird artificial colour. Not even faux absinthe, just a weird mint spirit."
+    ]
+  },
+  {
+    "id": "La-Muse-Verte",
+    "name": "La Muse Verte",
+    "abv": 60,
+    "origin": "France",
+    "type": "Traditional Absinthe",
+    "image": "https://bilder.vinmonopolet.no/cache/600x600-0/8334301-1.jpg",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Verte, olive green. Greener than the usual absinthes.",
+      "aroma": "Equal parts salty and sweet. Reminiscent of dried fruits, like raisins, and treated wood",
+      "taste": "Sweet, saturated liquorice, spicier notes of anise, but no tingle. It goes down very smoothly. Diluting makes it sweeter. Also has an airy and minty finish. ",
+      "louche": "Instant pearlescent louche. Has the signature surface oil line. The aroma when louched presents more fresh notes, like citrus and mint. ",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 8.5,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  },
+  {
+    "id": "Paul-Devoille-Libertine-Absinthe",
+    "name": "Paul Devoille Libertine Absinthe",
+    "abv": 55,
+    "origin": "France",
+    "type": "Traditional Absinthe",
+    "image": "https://bilder.vinmonopolet.no/cache/600x600-0/6993201-1.jpg",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Verte.",
+      "aroma": "",
+      "taste": ".",
+      "louche": "It does louche.",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 6.3,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  },
+  {
+    "id": "Absente-55",
+    "name": "Absente 55",
+    "abv": 55,
+    "origin": "France",
+    "type": "Faux Absinthe",
+    "image": "https://bilder.vinmonopolet.no/cache/515x515-0/4115001-1.jpg",
+    "dateOfReview": null,
+    "tasting": {
+      "appearance": "Verte; Clear-ish greenish olive",
+      "aroma": "Aniseed, fresh herbs",
+      "taste": "Sweet and bitter liquorice",
+      "louche": "Louches well. About the same opalescent effect you'd get from a traditional absinthe.",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 6,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  },
+  {
+    "id": "La-Fée-Parisienne-Absinthe-Supérieure",
+    "name": "La Fée Parisienne Absinthe Supérieure",
+    "abv": 68,
+    "origin": "France",
+    "type": "Traditional Absinthe",
+    "image": "https://img.thewhiskyexchange.com/700/absin_laf1.jpg?v=202407241",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Verte.",
+      "aroma": "",
+      "taste": ".",
+      "louche": "It does louche.",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 6.8,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  },
+  {
+    "id": "Devils-Botany-London-Absinthe",
+    "name": "Devil's Botany London Absinthe",
+    "abv": 45,
+    "origin": "England",
+    "type": "Faux Absinthe",
+    "image": "https://img.thewhiskyexchange.com/700/absin_dev3.jpg?v=202407241",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Clear.",
+      "aroma": "",
+      "taste": "",
+      "louche": "N/A",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 2,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  },
+  {
+    "id": "Bareksten-Illsint-Absint",
+    "name": "Bareksten Illsint Absint",
+    "abv": 60,
+    "origin": "Norway, Bergen",
+    "type": "Traditional Absinthe",
+    "image": "https://bilder.vinmonopolet.no/cache/515x515-0/10196202-1.jpg",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Blanche, completely clear. Like water with a bit of viscousity.",
+      "aroma": "Very fresh, reminiscent of a coniferous petrichor-like aroma.",
+      "taste": "Intense initial hit. Very vibrant on first impression. Has a bit of a boxy finish, like a room that's been overtaken by moss. Overall very forest-y associations.",
+      "louche": "Louches well, starts off very particle-y, but achieves opalescence when the oils are mixed completely.",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 6.8,
+      "outOf": 10,
+      "updates": [
+        {
+          "date": "20.04.2026",
+          "previousScore": 7.5,
+          "newScore": 6.8,
+          "note": "Having tried this a few more times, I think I might have to deduct a few points due to the louche being a bit inconsistent. Sometimes it louches really well, and other times it just kinda turns cloudy and grainy without achieving the opalescent expected from a good absinthe."
+        }
+      ]
+    },
+    "notes": [
+      "Initially when I saw this bottle around, I instinctively assumed that it must've been a mass-produced low quality, locally produced absinthe. The branding of the bottle is part of a collection of spirits with the exact same design, so I naturally kinda steered away from this for the longest time. After a bit of research though there doesn't seem to be anything to suggest that this is a faux absinthe. From the little information I could find online, it seemed like a traditionally distilled absinthe with added \"herbs reminiscent of norwegian forests\", which is intriguing.",
+      "After trying it with my girlfriend (who doesn't really like the taste of absinthe to begin with), we concluded that it's probably the smoothest absinthe we've had so far. The aroma is very distinctly different from the french absinthes we've had - as other reviewers have mentioned, it somehow DOES have herbs that remind me of norwegian forests. Coniferous, pine, moss-y, flower-y - very nice scents to just have around as you're louching the drink.",
+      "Overall not a very bitter absinthe, presumably because of the added herbs to tone down the wormwood. Surprisingly, the liqorice association that comes with anise didn't come to mind at first, which is also a first. Good stuff - just wish the bottle design was a bit more inviting (though I guess traditional absinthes don't need to advertise themselves as such)."
+    ]
+  },
+  {
+    "id": "Combier-Blanchette",
+    "name": "Combier Absinthe Blanchette",
+    "abv": 60,
+    "origin": "France",
+    "type": "Traditional Absinthe",
+    "image": "https://img.thewhiskyexchange.com/700/absin_com2.jpg?v=202407241",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Blanche, completely clear.",
+      "aroma": "Intense alcoholic smell on first try.",
+      "taste": ".",
+      "louche": "Louches well, starts off very particle-y, but achieves opalescence when the oils are mixed completely. The 'la bleue' effect is very pronounced, and the louche is very smooth.",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 7.4,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  },
+  {
+    "id": "La-Fée-Absinthe-NV",
+    "name": "La Fée Absinthe NV",
+    "abv": 45,
+    "origin": "France",
+    "type": "Faux Absinthe",
+    "image": "https://img.thewhiskyexchange.com/700/absin_laf5.jpg?v=202407241",
+    "dateOfReview": "27.03.2026",
+    "tasting": {
+      "appearance": "Artificially green.",
+      "aroma": "",
+      "taste": ".",
+      "louche": "It does louche.",
+      "ingredients": null
+    },
+    "rating": {
+      "score": 4,
+      "outOf": 10,
+      "updates": []
+    },
+    "notes": []
+  }
+]
