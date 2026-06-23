@@ -79,7 +79,7 @@ const pageQuotes = {
       attribution: '- Amary, sipping a glass of absinthe',
     },
     {
-      quote: '*unsconscious*',
+      quote: '*unconscious*',
       attribution: '- Amary, unconscious',
     },
   ],
