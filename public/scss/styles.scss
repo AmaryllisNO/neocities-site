@@ -91,6 +91,7 @@ section {
   &.section {
     &--profile-card {
       border: 0;
+      margin-left: 0;
     }
   }
 }
@@ -173,14 +174,6 @@ footer {
   .nav {
     &--mobile {
       display: block;
-    }
-  }
-
-  .profile-card {
-    &__quote {
-      // width: 100px;
-      text-wrap: wrap;
-      animation: none;
     }
   }
 
