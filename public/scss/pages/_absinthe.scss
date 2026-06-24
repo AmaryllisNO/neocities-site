@@ -159,7 +159,7 @@
   margin-bottom: 3em;
   padding: 1.5em;
   background-color: rgba(25, 27, 40, 0.269);
-  //   border: white solid 1px;
+  border: rgb(83, 97, 106) solid 1px;
   backdrop-filter: blur(2px);
 
   &__header {
@@ -179,7 +179,7 @@
     gap: 2em;
     font-family: 'Times New Roman', Times, serif;
     font-size: 0.95em;
-    color: rgb(150, 150, 150);
+    color: rgb(203, 203, 203);
 
     span {
       display: flex;
@@ -347,7 +347,13 @@
 
   .review-entry__table {
     width: 100%;
+    flex-grow: 1;
     font-size: 0.9rem;
+
+    tbody {
+      display: block;
+      width: 100%;
+    }
   }
 
   .review-entry__table th,
@@ -405,6 +411,7 @@
 
     &__list {
       gap: 0.65em;
+      flex-direction: column;
     }
 
     &__group-title {
