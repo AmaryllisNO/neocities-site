@@ -443,9 +443,13 @@ const sendOrderInquiry = async () => {
       }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
       throw new Error(`Email request failed with status ${response.status}`);
     }
+
+    console.log('Success:', data);
 
     const receiptText = buildCustomerReceiptText();
     let receiptCopied = false;
