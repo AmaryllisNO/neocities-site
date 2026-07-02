@@ -32,7 +32,8 @@ const toEmailLineBreaks = (value) =>
   escapeHtml(value).replace(/\r?\n/g, '<br>');
 const getEmailerEndpoint = () =>
   shopConfig.emailerEndpoint || DEFAULT_EMAILER_ENDPOINT;
-const getCorsProxyEndpoint = (url) => `${CORSFIX_PROXY_BASE}${encodeURIComponent(url)}`;
+const getCorsProxyEndpoint = (url) =>
+  `${CORSFIX_PROXY_BASE}${encodeURIComponent(url)}`;
 const getOrderPrice = (product) => {
   if (
     product.status === 'on sale' &&
