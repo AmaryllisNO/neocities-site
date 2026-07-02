@@ -5,6 +5,7 @@ const carouselState = new Map();
 const DEFAULT_ASPECT_RATIO = '4 / 5';
 const DEFAULT_EMAILER_ENDPOINT =
   'https://emailer-withered-snow-9611.fly.dev/send-email';
+const CORSFIX_PROXY_BASE = 'https://proxy.corsfix.com/?url=';
 
 const elementIds = {
   products: 'shop-products',
@@ -31,6 +32,8 @@ const toEmailLineBreaks = (value) =>
   escapeHtml(value).replace(/\r?\n/g, '<br>');
 const getEmailerEndpoint = () =>
   shopConfig.emailerEndpoint || DEFAULT_EMAILER_ENDPOINT;
+const getCorsProxyEndpoint = (url) =>
+  `${CORSFIX_PROXY_BASE}${encodeURIComponent(url)}`;
 const getOrderPrice = (product) => {
   if (
     product.status === 'on sale' &&
@@ -409,6 +412,7 @@ const handleProductsClick = (event) => {
 };
 
 const sendOrderInquiry = async () => {
+  console.log('Preparing to send order inquiry...');
   const validationError = validateOrderInput();
   if (validationError) {
     setStatus(validationError);
@@ -427,7 +431,7 @@ const sendOrderInquiry = async () => {
   const senderEmail = getInputValue('email');
   const summary = buildOrderSummaryHtml();
   const subject = 'Painting order inquiry';
-  const endpoint = getEmailerEndpoint();
+  const endpoint = getCorsProxyEndpoint(getEmailerEndpoint());
 
   try {
     const response = await fetch(endpoint, {
@@ -443,13 +447,34 @@ const sendOrderInquiry = async () => {
       }),
     });
 
-    const data = await response.json();
+    const rawBody = await response.text();
+    let data = null;
 
-    if (!response.ok) {
-      throw new Error(`Email request failed with status ${response.status}`);
+    if (rawBody) {
+      try {
+        data = JSON.parse(rawBody);
+      } catch (parseError) {
+        console.warn('Response body was not valid JSON.', parseError);
+      }
     }
 
-    console.log('Success:', data);
+    if (!response.ok) {
+      const apiMessage = data?.message || data?.error;
+      throw new Error(
+        apiMessage || `Email request failed with status ${response.status}`,
+      );
+    }
+
+    if (data !== null) {
+      console.log('Success:', data);
+    } else if (rawBody) {
+      console.log('Success (non-JSON response):', rawBody);
+    } else {
+      const statusLabel = response.statusText
+        ? `${response.status} ${response.statusText}`
+        : `${response.status}`;
+      console.log(`Success (${statusLabel}): empty response body`);
+    }
 
     const receiptText = buildCustomerReceiptText();
     let receiptCopied = false;
