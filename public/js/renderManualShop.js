@@ -5,7 +5,7 @@ const carouselState = new Map();
 const DEFAULT_ASPECT_RATIO = '4 / 5';
 const DEFAULT_EMAILER_ENDPOINT =
   'https://emailer-withered-snow-9611.fly.dev/send-email';
-const CORS_API_HOST = 'https://cors-anywhere.herokuapp.com/';
+const CORSFIX_PROXY_BASE = 'https://proxy.corsfix.com/?url=';
 
 const elementIds = {
   products: 'shop-products',
@@ -32,8 +32,7 @@ const toEmailLineBreaks = (value) =>
   escapeHtml(value).replace(/\r?\n/g, '<br>');
 const getEmailerEndpoint = () =>
   shopConfig.emailerEndpoint || DEFAULT_EMAILER_ENDPOINT;
-const withCorsProxy = (url) =>
-  url.startsWith(CORS_API_HOST) ? url : `${CORS_API_HOST}${url}`;
+const getCorsProxyEndpoint = (url) => `${CORSFIX_PROXY_BASE}${encodeURIComponent(url)}`;
 const getOrderPrice = (product) => {
   if (
     product.status === 'on sale' &&
@@ -430,7 +429,7 @@ const sendOrderInquiry = async () => {
   const senderEmail = getInputValue('email');
   const summary = buildOrderSummaryHtml();
   const subject = 'Painting order inquiry';
-  const endpoint = withCorsProxy(getEmailerEndpoint());
+  const endpoint = getCorsProxyEndpoint(getEmailerEndpoint());
 
   try {
     const response = await fetch(endpoint, {
