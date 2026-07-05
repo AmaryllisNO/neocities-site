@@ -68,6 +68,10 @@ const pageQuotes = {
       quote: '"That Aviline.. sure is a character."',
       attribution: '- Amary, talking about Aviline for the first time.',
     },
+    {
+      quote: '"I don\'t know anyone here, but I\'m sure Aviline does. "',
+      attribution: '- Amary.',
+    },
   ],
   '/journal/index.html': [
     {
@@ -118,7 +122,20 @@ const pageQuotes = {
 let currentQuoteIndex = 0;
 let quoteElement = null;
 let isTyping = false;
-const TYPING_SPEED = 15; // milliseconds per character
+let hasStartedConversation = false;
+const TYPING_SPEED = 60; // milliseconds per character
+
+const pagePromptTopics = {
+  '/index.html': 'who you are',
+  '/art.html': 'art and commissions',
+  '/music.html': 'music tastes',
+  '/commissions.html': 'commission slots',
+  '/support.html': 'how to support the site',
+  '/characters/index.html': 'the characters around here',
+  '/journal/index.html': 'journal entries',
+  '/misc/absinthe.html': 'the absinthe review',
+  default: 'what brought you here',
+};
 
 function getValidQuotes(quotes) {
   return (quotes || []).filter(
@@ -174,6 +191,57 @@ function getPageQuotes() {
   return pageQuotes.default;
 }
 
+function getPagePromptTopic() {
+  const pathname = window.location.pathname || '/';
+  const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
+
+  const candidates = new Set();
+  candidates.add(pathname);
+  candidates.add(normalizedPathname);
+
+  if (normalizedPathname === '/') {
+    candidates.add('/index.html');
+  }
+
+  if (pathname.endsWith('/')) {
+    candidates.add(`${pathname}index.html`);
+  }
+
+  if (normalizedPathname !== '/' && !normalizedPathname.endsWith('.html')) {
+    candidates.add(`${normalizedPathname}.html`);
+    candidates.add(`${normalizedPathname}/index.html`);
+  }
+
+  for (const candidate of candidates) {
+    if (pagePromptTopics[candidate]) {
+      return pagePromptTopics[candidate];
+    }
+  }
+
+  return pagePromptTopics.default;
+}
+
+function displayInitialPrompt() {
+  if (!quoteElement) {
+    return;
+  }
+
+  quoteElement.textContent = `"Talk to Amary about ${getPagePromptTopic()}..."`;
+
+  const contentContainer = quoteElement.parentElement;
+  let attributionElement = contentContainer.querySelector(
+    '.profile-card__attribution',
+  );
+
+  if (!attributionElement) {
+    attributionElement = document.createElement('div');
+    attributionElement.className = 'profile-card__attribution';
+    contentContainer.appendChild(attributionElement);
+  }
+
+  attributionElement.textContent = '- click to start';
+}
+
 function displayQuote(quotes) {
   if (!quoteElement) {
     console.warn('Quote element not found');
@@ -216,6 +284,14 @@ function displayQuote(quotes) {
 
   function typeNextCharacter() {
     if (currentCharIndex < fullText.length) {
+      const audio = new Audio('../assets/audio/amaryspeaks1(1).ogg');
+      audio.volume = 1;
+      // audio.playbackRate = 1.5;
+      // audio.currentTime = 1;
+      // audio.fastSeek(1);
+      // audio.duration = 0.1;
+      audio.play();
+
       quoteElement.textContent += fullText[currentCharIndex];
       currentCharIndex++;
       setTimeout(typeNextCharacter, TYPING_SPEED);
@@ -250,12 +326,22 @@ function initializeQuotes() {
 
   const pageQuotesForCurrentPage = getPageQuotes();
 
-  // Display initial quote
-  displayQuote(pageQuotesForCurrentPage);
+  // Display a silent, page-specific prompt until the user interacts.
+  displayInitialPrompt();
 
   // Make the entire profile card clickable to cycle through quotes
   profileCard.classList += ' pointer';
   profileCard.addEventListener('click', () => {
+    if (isTyping) {
+      return;
+    }
+
+    if (!hasStartedConversation) {
+      hasStartedConversation = true;
+      displayQuote(pageQuotesForCurrentPage);
+      return;
+    }
+
     if (!isTyping) {
       nextQuote(pageQuotesForCurrentPage);
     }
