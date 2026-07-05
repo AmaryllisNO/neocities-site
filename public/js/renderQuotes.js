@@ -123,7 +123,7 @@ let currentQuoteIndex = 0;
 let quoteElement = null;
 let isTyping = false;
 let hasStartedConversation = false;
-const TYPING_SPEED = 60; // milliseconds per character
+const TYPING_SPEED = 60;
 
 const pagePromptTopics = {
   '/index.html': 'who you are',
@@ -284,7 +284,7 @@ function displayQuote(quotes) {
 
   function typeNextCharacter() {
     if (currentCharIndex < fullText.length) {
-      const audio = new Audio('../assets/audio/amaryspeaks1(1).ogg');
+      const audio = new Audio('../assets/audio/amaryspeaks2.ogg');
       audio.volume = 1;
       // audio.playbackRate = 1.5;
       // audio.currentTime = 1;
