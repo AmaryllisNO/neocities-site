@@ -53,7 +53,7 @@ main {
 
 a {
   text-decoration: none;
-  cursor: pointer;
+
   &:hover {
     filter: brightness(0.5);
   }
@@ -83,16 +83,27 @@ th {
   width: 150px;
 }
 
-section {
-  border: 1px solid grey;
+.section {
   padding: 1em;
   margin: 1em;
+  border: 1px solid grey;
 
-  &.section {
-    &--profile-card {
-      border: 0;
-      margin-left: 0;
-    }
+  &--header {
+    padding: 0;
+    margin: 1em;
+    margin-bottom: 0;
+    // outline: 1px solid red;
+    display: flex;
+    border: none;
+    justify-content: space-between;
+  }
+  &--profile-card {
+    // outline: 1px solid red;
+    margin: 0;
+    width: max-content;
+    // flex: 2;
+
+    border: 0;
   }
 }
 
@@ -105,6 +116,7 @@ h2 {
   margin-top: 15px;
   color: rgb(235, 240, 255);
   margin-left: 0.5em;
+  min-width: max-content;
 }
 
 h2 {

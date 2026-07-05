@@ -15,6 +15,8 @@
 
 html {
   background-image: url('/assets/images/bg.jpg');
+  cursor: url('../assets/images/cursor-30.png'), auto;
+
   /* background-position: left; */
   background-size: cover;
   background-position: center;
@@ -24,6 +26,15 @@ html {
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
+  a {
+    &:hover {
+      cursor: url('../assets/images/cursor-open-30.png'), auto;
+    }
+  }
+}
+
+.pointer {
+  cursor: url('../assets/images/cursor-open-30.png'), auto;
 }
 
 body {

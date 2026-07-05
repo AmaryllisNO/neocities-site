@@ -4,15 +4,39 @@
 const pageQuotes = {
   '/index.html': [
     {
-      quote: '"A noble spirit embiggens the smallest man."',
+      quote: '"Huh? Do I know you?."',
       attribution: '- Amary',
     },
     {
-      quote: '"Curiosity is the engine of progress."',
+      quote: '"I don\'t think I know you - please be on your way."',
       attribution: '- Amary',
     },
     {
-      quote: '"Welcome to my corner of the web."',
+      quote: '"..."',
+      attribution: '- Amary',
+    },
+    {
+      quote: '*sigh*',
+      attribution: '- Amary',
+    },
+    {
+      quote: '"I\'m not sure what you want from me."',
+      attribution: '- Amary',
+    },
+    {
+      quote: `"what was that? ..."secrets"?, "forbidden knowledge"?, "blood rituals"!?`,
+      attribution: '- Amary',
+    },
+    {
+      quote: `"Keep your voice down. I don't know what you're waffling on about."`,
+      attribution: '- Amary',
+    },
+    {
+      quote: `*looks around*`,
+      attribution: '- Amary',
+    },
+    {
+      quote: `"I need to be somewhere. Do not follow me."`,
       attribution: '- Amary',
     },
   ],
@@ -28,8 +52,7 @@ const pageQuotes = {
   ],
   '/music.html': [
     {
-      quote:
-        '"I once heard from someone that music is the "art of which is most nigh to tears and memory"."',
+      quote: `"Where did they find this tasteless excuse of a bard?"`,
       attribution: '- Amary',
     },
     {
@@ -47,16 +70,16 @@ const pageQuotes = {
   ],
   '/journal/index.html': [
     {
-      quote: '"Thoughts transcribed, moments preserved."',
+      quote: '"SNOOPING AS USUAL."',
       attribution: '- Amary',
     },
     {
-      quote: '"This is where I think out loud."',
-      attribution: '- Amary',
+      quote: '"Who gave you permission to read this??"',
+      attribution: '- Amary, seeing you reading her journal.',
     },
     {
-      quote: '"My journal, my sanctuary."',
-      attribution: '- Amary',
+      quote: '*mumbling* *scribble noises*',
+      attribution: '- Amary writing in her journal',
     },
   ],
   '/misc/absinthe.html': [
@@ -211,7 +234,7 @@ function initializeQuotes() {
   displayQuote(pageQuotesForCurrentPage);
 
   // Make the entire profile card clickable to cycle through quotes
-  profileCard.style.cursor = 'pointer';
+  profileCard.classList += ' pointer';
   profileCard.addEventListener('click', () => {
     if (!isTyping) {
       nextQuote(pageQuotesForCurrentPage);

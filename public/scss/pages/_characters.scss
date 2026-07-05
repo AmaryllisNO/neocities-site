@@ -1,3 +1,8 @@
+#characters {
+  border: none;
+  margin: 0;
+}
+
 .characters {
   &__overview {
     list-style: none;
@@ -26,14 +31,26 @@
 
     &-item {
       display: flex;
-      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(21, 21, 26, 0.317);
+      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.553);
       padding: 1em;
       border-radius: 5px;
       flex-direction: column;
+      padding-bottom: 3em;
       // text-align: center;
       // gap: 1em;
 
-      // outline: 1px solid red;
+      &:hover {
+        background-color: rgba(40, 40, 54, 0.381);
+        box-shadow: 0 0 10px rgba(118, 128, 150, 0.553);
+        // filter: saturate(1.2) contrast(1.05);
+        cursor: pointer;
+
+        & h2 {
+          text-shadow: rgba(216, 238, 255, 0.662) 0px 0px 5px;
+        }
+      }
 
       &-row {
         width: 100%;
@@ -52,8 +69,17 @@
         width: 150px;
 
         &:nth-child(2) {
-          // outline: 1px solid red;
           flex: 1;
+
+          &::after {
+            content: '';
+            background: url(../../assets/images/horizontal\ bevel.png) no-repeat
+              center/contain;
+            width: 100%;
+            height: 30px;
+            opacity: 0.8;
+            transform: rotate(180deg);
+          }
         }
 
         &:last-child {
@@ -74,6 +100,13 @@
           // margin-top: 0.5em;
           font-weight: normal;
           color: rgb(200, 200, 200);
+        }
+      }
+
+      &-description {
+        p {
+          margin: 0;
+          text-wrap: wrap;
         }
       }
 
@@ -104,15 +137,34 @@
     }
 
     &-portrait {
-      border-radius: 5px;
       width: 100%;
       height: 100%;
       margin-bottom: 0.5em;
       object-fit: cover;
 
+      mix-blend-mode: difference;
+
       &-wrapper {
-        height: 150px;
-        width: 150px;
+        height: 120px;
+        width: 120px;
+        position: relative;
+
+        &::after {
+          content: '';
+          background: url(../../assets/images/underline\ bevel.png) no-repeat
+            center/cover;
+          display: block;
+          transform: scale(1.2);
+          transform-origin: top left;
+          position: relative;
+          top: -10px;
+          left: -5px;
+          width: 110px;
+          height: 30px;
+          // border: 1px solid red;
+          // height: 100%;
+          // width: 100%;
+        }
       }
     }
 
