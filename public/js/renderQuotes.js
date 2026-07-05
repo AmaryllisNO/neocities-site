@@ -1,5 +1,6 @@
 // renderQuotes.js
 // Dynamically rotates quotes on the profile card based on page location
+console.log('renderQuotes.js loaded');
 
 const pageQuotes = {
   '/index.html': [
@@ -119,42 +120,57 @@ let quoteElement = null;
 let isTyping = false;
 const TYPING_SPEED = 15; // milliseconds per character
 
+function getValidQuotes(quotes) {
+  return (quotes || []).filter(
+    (entry) =>
+      entry &&
+      typeof entry.quote === 'string' &&
+      entry.quote.trim().length > 0 &&
+      typeof entry.attribution === 'string',
+  );
+}
+
 function getPageQuotes() {
-  let pathname = window.location.pathname;
+  const pathname = window.location.pathname || '/';
+  const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
 
-  // Normalize pathname - ensure it ends with .html for comparison
-  if (!pathname.endsWith('.html') && !pathname.endsWith('/')) {
-    pathname += '.html';
+  const candidates = new Set();
+  candidates.add(pathname);
+  candidates.add(normalizedPathname);
+
+  if (normalizedPathname === '/') {
+    candidates.add('/index.html');
   }
 
-  // Try exact match first
-  if (pageQuotes[pathname]) {
-    return pageQuotes[pathname];
+  if (pathname.endsWith('/')) {
+    candidates.add(`${pathname}index.html`);
   }
 
-  // Try without .html extension
-  const pathnameWithoutHtml = pathname.replace('.html', '');
-  for (const [path, quotes] of Object.entries(pageQuotes)) {
-    const pathWithoutHtml = path.replace('.html', '');
-    if (pathWithoutHtml === pathnameWithoutHtml) {
-      return quotes;
+  if (normalizedPathname !== '/' && !normalizedPathname.endsWith('.html')) {
+    candidates.add(`${normalizedPathname}.html`);
+    candidates.add(`${normalizedPathname}/index.html`);
+  }
+
+  for (const candidate of candidates) {
+    if (pageQuotes[candidate]) {
+      const validQuotes = getValidQuotes(pageQuotes[candidate]);
+      return validQuotes.length > 0 ? validQuotes : pageQuotes.default;
     }
   }
 
-  // Try matching by page name (handles root index differently)
-  const pathParts = pathname.split('/').filter(Boolean);
-  const lastPart = pathParts[pathParts.length - 1] || 'index.html';
-
+  // Fallback: compare without .html suffix for existing keys.
+  const compactPath = normalizedPathname.replace(/\.html$/, '');
   for (const [path, quotes] of Object.entries(pageQuotes)) {
-    if (
-      path.endsWith(lastPart) ||
-      path.endsWith(lastPart.replace('.html', ''))
-    ) {
-      return quotes;
+    if (path === 'default') {
+      continue;
+    }
+
+    if (path.replace(/\.html$/, '') === compactPath) {
+      const validQuotes = getValidQuotes(quotes);
+      return validQuotes.length > 0 ? validQuotes : pageQuotes.default;
     }
   }
 
-  // Fallback to default
   return pageQuotes.default;
 }
 
@@ -164,12 +180,16 @@ function displayQuote(quotes) {
     return;
   }
 
-  if (quotes.length === 0) {
+  if (!Array.isArray(quotes) || quotes.length === 0) {
     console.warn('No quotes available for this page');
     return;
   }
 
   const currentQuote = quotes[currentQuoteIndex];
+  if (!currentQuote || typeof currentQuote.quote !== 'string') {
+    console.warn('Invalid quote entry encountered');
+    return;
+  }
 
   // Clear the quote element
   quoteElement.textContent = '';
