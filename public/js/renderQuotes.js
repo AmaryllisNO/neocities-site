@@ -62,7 +62,12 @@ const pageQuotes = {
     },
   ],
   '/commissions.html': [{}],
-  '/support.html': [{}],
+  '/support.html': [
+    {
+      quote: '"I don\'t usually take donations..."',
+      attribution: '- Amary',
+    },
+  ],
   '/characters/index.html': [
     {
       quote: '"That Aviline.. sure is a character."',
@@ -71,6 +76,12 @@ const pageQuotes = {
     {
       quote: '"I don\'t know anyone here, but I\'m sure Aviline does. "',
       attribution: '- Amary.',
+    },
+  ],
+  '/characters/amary.html': [
+    {
+      quote: `*stares at you*`,
+      attribution: '- Amary',
     },
   ],
   '/journal/index.html': [
@@ -111,6 +122,7 @@ const pageQuotes = {
       attribution: '- Amary, unconscious',
     },
   ],
+
   default: [
     {
       quote: '"The fog is coming..."',
@@ -126,14 +138,14 @@ let hasStartedConversation = false;
 const TYPING_SPEED = 60;
 
 const pagePromptTopics = {
-  '/index.html': 'who you are',
-  '/art.html': 'art',
-  '/music.html': 'music',
+  '/index.html': `"Where am I? Who are you"?`,
+  '/art.html': '> Ask Amary about art.',
+  '/music.html': '> Ask Amary about music.',
   '/commissions.html': 'commission slots',
-  '/support.html': 'how to support the site',
-  '/characters/index.html': 'the creatures around here',
-  '/journal/index.html': 'journal entries',
-  '/misc/absinthe.html': 'absinthe',
+  '/support.html': '> Ask Amary about supporting her work',
+  '/characters/index.html': '> Ask Amary about the creatures around here',
+  '/journal/index.html': "> Look through Amary's journal",
+  '/misc/absinthe.html': '> Inquire Amary about absinthe.',
   default: 'what brought you here',
 };
 
@@ -226,7 +238,7 @@ function displayInitialPrompt() {
     return;
   }
 
-  quoteElement.textContent = `"Talk to Amary about ${getPagePromptTopic()}..."`;
+  quoteElement.textContent = `${getPagePromptTopic()}...`;
 
   const contentContainer = quoteElement.parentElement;
   let attributionElement = contentContainer.querySelector(
