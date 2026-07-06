@@ -168,3 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
     copyrightElement.innerHTML = `© ${new Date().getFullYear()} Amaryllis `;
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navListItems = document.querySelectorAll('.nav__list-item');
+  navListItems.forEach((item) => {
+    const audio = new Audio('../assets/audio/TASCAM_450.wav');
+    item.addEventListener('mouseenter', () => {
+      audio.play();
+    });
+  });
+});

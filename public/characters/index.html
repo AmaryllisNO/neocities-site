@@ -29,10 +29,12 @@
 
 <body>
     <div class="body-container">
-        <aside class="aside" id="aside">
-
-        </aside>
+        <aside class="aside" id="aside"></aside>
         <main>
+            <ul class="breadcrumb">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Characters</a></li>
+            </ul>
             <section class="section section--header">
                 <h1 class="title">Characters</h1>
                 <section class="section section--profile-card">
@@ -292,11 +294,12 @@
         </li>
         <div class="copyright" id="copyright"></div>
     </ul>
-    <div style="display: flex; justify-content: center">
-        <img style="max-width: 100%; height: auto" src="/assets/images/horizontal bevel.png" alt="Horizontal Bevel"
-            srcset="" />
-    </div>
+
 </footer>
+<div class="startup" id="startup">
+</div>
+
+<script type="module" src="../js/events/startup.js"></script>
 <script type="module" src="../js/pages/characters.js"></script>
 <script type="module" src="../js/renderNav.js"></script>
 <script type="module" src="../js/renderQuotes.js"></script>

@@ -11,8 +11,10 @@
 @use 'components/_title.scss';
 @use 'components/_hero.scss';
 @use 'components/_profile-card.scss';
-@use 'components/_visitor-count';
-@use 'components/_breadcrumb';
+@use 'components/_visitor-count.scss';
+@use 'components/_breadcrumb.scss';
+@use 'components/_startup.scss';
+@use 'components/_landing-tagline.scss';
 
 // pages
 @use 'pages/_art.scss';
@@ -183,12 +185,6 @@ footer {
 }
 
 @media only screen and (max-width: 768px) {
-  .nav {
-    &--mobile {
-      display: block;
-    }
-  }
-
   .body-container {
     flex-direction: column;
     flex: 1 1 auto;

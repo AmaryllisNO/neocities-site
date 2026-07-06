@@ -127,13 +127,13 @@ const TYPING_SPEED = 60;
 
 const pagePromptTopics = {
   '/index.html': 'who you are',
-  '/art.html': 'art and commissions',
-  '/music.html': 'music tastes',
+  '/art.html': 'art',
+  '/music.html': 'music',
   '/commissions.html': 'commission slots',
   '/support.html': 'how to support the site',
-  '/characters/index.html': 'the characters around here',
+  '/characters/index.html': 'the creatures around here',
   '/journal/index.html': 'journal entries',
-  '/misc/absinthe.html': 'the absinthe review',
+  '/misc/absinthe.html': 'absinthe',
   default: 'what brought you here',
 };
 

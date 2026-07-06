@@ -83,6 +83,7 @@
 
 
 <body>
+
   <div class="body-container">
     <aside class="aside" id="aside">
 
@@ -103,8 +104,7 @@
         <div style="margin-bottom: 20px;">
           <h1 style="justify-content: center; margin: 0; margin-left: 3em; margin-bottom: 1rem;" class="title">Amaryllis
           </h1>
-          <h2
-            style="font-family: 'Times New Roman'; font-size: 1rem; display: block; text-transform: uppercase;  margin: 0 auto; text-align: center;  ">
+          <h2 class="landing-tagline">
             Artist -
             music producer - web
             developer - online
@@ -208,34 +208,19 @@
 </body>
 <footer>
   <div id="mobile-nav"></div>
-  <ul class="socials socials__list">
-    <!-- <li class="socials__list-item">
-      <a href="https://amaryllis.no">Old Website</a>
-    </li> -->
-    <li class="socials__list-item">
-      <a target="_blank" href="https://bsky.app/profile/amaryllis.no"><i class="fa-brands fa-bluesky"></i> Bluesky</a>
-    </li>
-    <li class="socials__list-item">
-      <a target="_blank" href="https://www.instagram.com/amaryllis_no/"><i class="fa-brands fa-instagram"></i>
-        Instagram</a>
-    </li>
-    <li class="socials__list-item">
-      <a target="_blank" href="https://www.twitter.com/amaryllis_no/"><i class="fa-brands fa-twitter"></i> Twitter</a>
-    </li>
-    <li class="socials__list-item">
-      <a target="_blank" href="https://sharper-fangs.null00.no/">null.no | Sharper Fangs</a>
-    </li>
-  </ul>
-  <div style="display: flex; justify-content: center">
-    <img style="max-width: 100%; height: auto" src="/assets/images/horizontal bevel.png" alt="Horizontal Bevel"
-      srcset="" />
-  </div>
+  <div id="socials"></div>
+
+
 
 </footer>
+<div class="startup" id="startup">
+</div>
+
 <!-- <script type="module" src="js/renderAudioPlayer.js"></script> -->
+<script type="module" src="js/events/startup.js"></script>
+<script type="module" src="js/renders/renderSocials.js"></script>
 <script type="module" src="js/renderQuotes.js"></script>
 <script type="module" src="js/renderNav.js"></script>
-<script type="module" src="js/visitors.js"></script>
 
 
 </html>
