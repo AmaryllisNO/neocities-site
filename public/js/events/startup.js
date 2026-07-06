@@ -26,7 +26,7 @@ startup.innerHTML = `
 `;
 
 startup.addEventListener('click', () => {
-  const audio = new Audio(`${pathPrefix}assets/audio/01-UI-WOMP.mp3`);
+  const audio = new Audio(`${pathPrefix}assets/audio/01-UI-womp.mp3`);
   audio.play();
   startup.classList.add('startup--hide');
   setTimeout(() => {
