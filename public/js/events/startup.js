@@ -1,21 +1,13 @@
-console.log('startup.js loaded');
-
-console.log('window.location.pathname:', window.location.pathname);
-
 const directoryList = window.location.pathname.split('/'); // Subtract 2 for the leading and trailing slashes
-console.log('directoryList:', directoryList);
 
 let pathPrefix = '';
 const pathname = window.location.pathname;
 
 directoryList.forEach((depth) => {
-  console.log('depth:', depth);
   if (depth !== '') {
     pathPrefix += '../';
   }
 });
-
-console.log('pathPrefix:', pathPrefix);
 
 const startup = document.getElementById('startup');
 startup.innerHTML = `

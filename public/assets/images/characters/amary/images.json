@@ -1,0 +1,43 @@
+[
+  {
+    "id": "absinthe-bar",
+    "filename": "absinthe-bar.jpg",
+    "alt": "Illustration of Amary in an absinthe bar"
+  },
+  {
+    "id": "church-thing",
+    "filename": "church thing.jpg",
+    "alt": "Illustration of Amary in a church"
+  },
+
+  {
+    "id": "dorm-rumination",
+    "filename": "dorm rumination.jpg",
+    "alt": "Illustration of Amary in a dorm room"
+  },
+  {
+    "id": "poise-censored",
+    "filename": "poise censored.jpg",
+    "alt": "Illustration of Amary in a poised stance"
+  },
+  {
+    "id": "slippery",
+    "filename": "slippery.jpg",
+    "alt": "Illustration of Amary on a slippery surface"
+  },
+  {
+    "id": "where-we-going",
+    "filename": "where we going.jpg",
+    "alt": "Illustration of Amary asking 'Where we going?'"
+  },
+  {
+    "id": "charge_by_amaryllisno_dlgpsiv",
+    "filename": "charge_by_amaryllisno_dlgpsiv.png",
+    "alt": "Illustration of Amary charging"
+  },
+  {
+    "id": "sit",
+    "filename": "sit.jpg",
+    "alt": "Illustration of Amary sitting"
+  }
+]
