@@ -63,62 +63,35 @@
 
             <!-- image gallery -->
             <section class="section">
+                <div class="character-gallery-stack">
+                    <section class="character-gallery-panel" aria-labelledby="amary-gallery-by-me-title"
+                        data-gallery-collapsed="true" data-peek-height="120">
+                        <h2 class="character-gallery-panel__title" id="amary-gallery-by-me-title">Artwork by Amaryllis
+                        </h2>
+                        <div class="character-gallery" data-character-gallery
+                            data-source="../assets/images/characters/amary/images.json"
+                            data-image-base="../assets/images/characters/amary/" data-columns="3"
+                            data-default-alt="Artwork of Amary by Amaryllis"
+                            data-empty-message="No artworks by Amaryllis available yet.">
+                        </div>
+                    </section>
 
-
-
-                <div class="character-gallery">
-                    <div class="character-gallery__col">
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/autumn melancholia.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
+                    <section class="character-gallery-panel" aria-labelledby="amary-gallery-by-others-title"
+                        data-gallery-collapsed="true" data-peek-height="240">
+                        <h2 class="character-gallery-panel__title" id="amary-gallery-by-others-title">Artwork by Other
+                            Artists</h2>
+                        <div class="character-gallery" data-character-gallery
+                            data-source="../assets/images/characters/amary/imagesByOthers.json"
+                            data-image-base="../assets/images/characters/amary/" data-columns="3"
+                            data-default-alt="Artwork of Amary by another artist"
+                            data-empty-message="No fanwork gallery yet. Coming soon.">
                         </div>
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/bedside.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/church thing.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-                    </div>
-                    <div class="character-gallery__col">
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/sit.jpg" alt="Autumnal illustration of Amary"
-                                class="character-gallery__image">
-                        </div>
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/dorm rumination.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/poise censored.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-
-                    </div>
-                    <div class="character-gallery__col">
-
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/slippery.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/where we going.jpg"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-                        <div class="character-gallery__item">
-                            <img src="../assets/images/characters/amary/charge_by_amaryllisno_dlgpsiv.png"
-                                alt="Autumnal illustration of Amary" class="character-gallery__image">
-                        </div>
-                    </div>
-
+                    </section>
                 </div>
-
-    </div>
-    </section>
+            </section>
 
 
-    </main>
+        </main>
     </div>
     <div class="startup" id="startup">
     </div>
@@ -134,6 +107,7 @@
 <script type="module" src="../js/renders/renderSocials.js"></script>
 <script type="module" src="../js/renderQuotes.js"></script>
 <script type="module" src="../js/renderNav.js"></script>
+<script type="module" src="../js/renderCharacterGallery.js"></script>
 
 
 </html>
