@@ -59,7 +59,9 @@ const normalizeEntry = (entry, index, imageBaseHref, fallbackAlt) => {
     alt:
       firstNonEmptyText(entry.alt, entry.description, entry.name) ||
       fallbackAlt,
-    fullHeight: toBoolean(entry.fullHeight || entry.full_height || entry['full-height']),
+    fullHeight: toBoolean(
+      entry.fullHeight || entry.full_height || entry['full-height'],
+    ),
   };
 };
 

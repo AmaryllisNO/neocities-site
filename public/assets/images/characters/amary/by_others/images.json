@@ -13,7 +13,8 @@
   {
     "name": "bywetdog",
     "image": "bywetdog2003.jpg",
-    "description": ""
+    "description": "",
+    "full-height": true
   },
   {
     "name": "ryujinhoshii",
