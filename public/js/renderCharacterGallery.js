@@ -21,6 +21,16 @@ const toIndex = (value, fallback = 0) => {
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
 };
 
+const toBoolean = (value) => {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase();
+    return normalized === 'true' || normalized === '1' || normalized === 'yes';
+  }
+  if (typeof value === 'number') return value === 1;
+  return false;
+};
+
 const splitIntoColumns = (items, columnCount) => {
   const cols = Array.from({ length: columnCount }, () => []);
   items.forEach((item, index) => {
@@ -32,8 +42,12 @@ const splitIntoColumns = (items, columnCount) => {
 const toImageSource = (entry, imageBaseHref) => {
   if (entry.src) return resolveUrl(entry.src, imageBaseHref);
   if (entry.filename) return resolveUrl(entry.filename, imageBaseHref);
+  if (entry.image) return resolveUrl(entry.image, imageBaseHref);
   return null;
 };
+
+const firstNonEmptyText = (...values) =>
+  values.find((value) => typeof value === 'string' && value.trim())?.trim();
 
 const normalizeEntry = (entry, index, imageBaseHref, fallbackAlt) => {
   const source = toImageSource(entry, imageBaseHref);
@@ -42,7 +56,10 @@ const normalizeEntry = (entry, index, imageBaseHref, fallbackAlt) => {
   return {
     id: entry.id || `gallery-item-${index + 1}`,
     src: source,
-    alt: entry.alt || fallbackAlt,
+    alt:
+      firstNonEmptyText(entry.alt, entry.description, entry.name) ||
+      fallbackAlt,
+    fullHeight: toBoolean(entry.fullHeight || entry.full_height || entry['full-height']),
   };
 };
 
@@ -50,6 +67,9 @@ const createGalleryItem = (item, index) => {
   const wrapper = document.createElement('button');
   wrapper.type = 'button';
   wrapper.className = 'character-gallery__item';
+  if (item.fullHeight) {
+    wrapper.classList.add('character-gallery__item--full-height');
+  }
   wrapper.dataset.galleryItemId = item.id;
   wrapper.dataset.galleryIndex = String(index);
   wrapper.setAttribute('aria-label', `Open image: ${item.alt}`);
@@ -331,6 +351,7 @@ const renderGalleryFromDataset = async (mountNode) => {
   initPanelAccordion(mountNode);
 
   const source = mountNode.dataset.source;
+  console.log('renderGalleryFromDataset', { source, mountNode });
   const imageBase = mountNode.dataset.imageBase || source;
   const columnCount = toPositiveInt(mountNode.dataset.columns, DEFAULT_COLUMNS);
   const fallbackAlt =

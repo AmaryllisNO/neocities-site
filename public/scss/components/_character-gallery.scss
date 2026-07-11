@@ -154,6 +154,15 @@
     &:hover img {
       transform: scale(1.015);
     }
+
+    &--full-height {
+      aspect-ratio: auto !important;
+
+      img {
+        height: auto;
+        object-fit: contain;
+      }
+    }
   }
 
   &__empty {
