@@ -15,20 +15,36 @@
     margin-top: 2em;
     margin-bottom: 2em;
     background-color: rgba(141, 141, 141, 0.053);
+    //  outline: 1px solid #d47979;
   }
 
   &__image-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
+    // outline: 1px solid #d47979;
     margin-top: 1em;
+    overflow: hidden;
+  }
+
+  &__image-track {
+    display: flex;
+    width: max-content;
+    animation: commissions-scroll 90s linear infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  &__image-group {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 1em;
+    padding-right: 1em;
   }
 
   &__image {
-    max-width: 310px;
-    min-width: 310px;
-    height: auto;
+    flex: 0 0 auto;
+    max-width: 600px;
+  max-height: 320px;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
@@ -131,6 +147,12 @@
   }
 }
 
+@keyframes commissions-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 // Collaborations section
 .collaborations {
   &__carousel {
@@ -229,13 +251,11 @@
 @media (max-width: 768px) {
   .commissions {
     &__image-container {
-      flex-direction: column;
-      align-items: center;
+      width: 100%;
     }
 
     &__image {
-      max-width: 100%;
-      margin-bottom: 1em;
+      max-height: 240px;
     }
   }
 
@@ -252,5 +272,19 @@
       width: 70px;
       height: 70px;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commissions__image-container {
+    overflow-x: auto;
+  }
+
+  .commissions__image-track {
+    animation: none;
+  }
+
+  .commissions__image-group[aria-hidden='true'] {
+    display: none;
   }
 }
