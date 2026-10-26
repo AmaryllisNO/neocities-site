@@ -2,12 +2,6 @@ document.querySelectorAll('.commissions__image-container').forEach((container) =
   const images = Array.from(container.querySelectorAll('.commissions__image'));
   if (images.length < 2) return;
 
-  const heading = container.closest('.commissions__section')?.querySelector('h3');
-  if (heading) {
-    container.setAttribute('role', 'region');
-    container.setAttribute('aria-label', `${heading.textContent.trim()} examples`);
-  }
-
   const track = document.createElement('div');
   track.className = 'commissions__image-track';
 
